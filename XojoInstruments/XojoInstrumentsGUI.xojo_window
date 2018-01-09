@@ -1387,6 +1387,17 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
+#tag Events GraphExcludeNodesWithoutEdgeCheck
+	#tag Event
+		Sub Action()
+		  If mSnapshot.ObjectRefGraph <> Nil Then
+		    mGraphData = DoGenerateDot(mSnapshot, Me.Value, False)
+		  Else
+		    mGraphData = ""
+		  End If
+		End Sub
+	#tag EndEvent
+#tag EndEvents
 #tag Events GraphHTMLViewer
 	#tag Event
 		Function CancelLoad(URL as String) As Boolean
