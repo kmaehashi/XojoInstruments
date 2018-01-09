@@ -19,7 +19,7 @@ XojoInstruments.Start()
 ### Snapshot Capturing
 
 1. Run your application.
-1. Click `Capture` in `XojoInstruments` window to capture the current runtime status.
+1. Click `Capture` in `Xojo Instruments` window to capture the current runtime status.
 1. Do something in your application.
 1. Click `Capture & Compare`.
 1. Go to `Comparison` tab to see what objects has been added/removed.
