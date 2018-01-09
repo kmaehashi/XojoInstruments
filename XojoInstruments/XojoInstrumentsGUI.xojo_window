@@ -1055,7 +1055,7 @@ End
 		  LabelComparison.Text = _
 		  "Snapshot Comparison from #" + Str(s1.ID) + " to #" + Str(s2.ID) + _
 		  " (" + Str(s2.ObjectRefIDs.Count()) + " objects, " + _
-		  Str(delta.Added.Count()) + " added, " + Str(delta.Removed.Count()) + " removed, " + Str(delta.Unchanged.Count()) + " unchnaged)"
+		  Str(delta.Added.Count()) + " added, " + Str(delta.Removed.Count()) + " removed, " + Str(delta.Unchanged.Count()) + " unchanged)"
 		End Sub
 	#tag EndMethod
 
