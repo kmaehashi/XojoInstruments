@@ -257,11 +257,6 @@ Implements XojoInstruments.Framework.XIObject
 			  return mID
 			End Get
 		#tag EndGetter
-		#tag Setter
-			Set
-			  mID = value
-			End Set
-		#tag EndSetter
 		ID As Integer
 	#tag EndComputedProperty
 
@@ -305,6 +300,11 @@ Implements XojoInstruments.Framework.XIObject
 
 
 	#tag ViewBehavior
+		#tag ViewProperty
+			Name="ID"
+			Group="Behavior"
+			Type="Integer"
+		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
 			Visible=true
