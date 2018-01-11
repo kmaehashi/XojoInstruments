@@ -217,6 +217,12 @@ Implements XojoInstruments.Framework.XIObject
 		        GetReferringObjectRefsRegister(child, "[" + Str(i) + "]", refs)
 		      Next
 		      
+		    ElseIf obj IsA SegmentedControl Then
+		      Dim sc As SegmentedControl = obj
+		      For i As Integer = sc.Items.UBound() DownTo 0
+		        GetReferringObjectRefsRegister(sc.Items(i), "Item[" + Str(i) + "]", refs)
+		      Next
+		      
 		    ElseIf obj IsA Dictionary Then
 		      Dim dict As Dictionary = Dictionary(obj)
 		      For i As Integer = dict.Count() - 1 DownTo 0
