@@ -2,6 +2,17 @@
 Protected Class XIDictionary
 Inherits Xojo.Core.Dictionary
 Implements XIObject
+	#tag Method, Flags = &h0
+		Function EagerlyEvaluateIterable() As Auto()
+		  Dim results() As Auto
+		  For Each item As Auto In Me
+		    results.Append(item)
+		  Next
+		  Return results
+		End Function
+	#tag EndMethod
+
+
 	#tag ViewBehavior
 		#tag ViewProperty
 			Name="Count"
