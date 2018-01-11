@@ -9,7 +9,7 @@ Begin Window XojoInstrumentsExample
    FullScreen      =   False
    FullScreenButton=   False
    HasBackColor    =   False
-   Height          =   84
+   Height          =   400
    ImplicitInstance=   False
    LiveResize      =   True
    MacProcID       =   0
@@ -25,7 +25,7 @@ Begin Window XojoInstrumentsExample
    Resizeable      =   False
    Title           =   "Example"
    Visible         =   True
-   Width           =   199
+   Width           =   600
    Begin PushButton LeakButton
       AutoDeactivate  =   True
       Bold            =   False
@@ -52,8 +52,29 @@ Begin Window XojoInstrumentsExample
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   32
+      Top             =   20
       Underline       =   False
+      Visible         =   True
+      Width           =   159
+   End
+   BeginSegmented SegmentedControl SegmentedControl1
+      Enabled         =   True
+      Height          =   24
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   20
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      MacControlStyle =   0
+      Scope           =   2
+      Segments        =   "Segmented\n\nFalse\rControl\n\nFalse"
+      SelectionType   =   0
+      TabIndex        =   2
+      TabPanelIndex   =   0
+      Top             =   52
       Visible         =   True
       Width           =   159
    End
