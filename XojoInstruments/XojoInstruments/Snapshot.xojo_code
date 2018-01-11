@@ -200,9 +200,9 @@ Implements XojoInstruments.Framework.XIObject
 		      End If
 		    Next
 		    
-		    // Handle special classes. Note that Select Case cannot be used
-		    // as it may be a Ptr or Delegate.
-		    If obj IsA Window Then
+		    // Handle special classes.
+		    Select Case obj
+		    Case IsA Window
 		      Dim win As Window = obj
 		      // Note: non-control window items cannot be reached.
 		      For i As Integer = win.ControlCount - 1 DownTo 0
@@ -210,20 +210,20 @@ Implements XojoInstruments.Framework.XIObject
 		        GetReferringObjectRefsRegister(ctrl, ctrl.Name, refs)
 		      Next
 		      
-		    ElseIf obj IsA MenuItem Then
+		    Case IsA MenuItem
 		      Dim m As MenuItem = obj
 		      For i As Integer = m.Count() - 1 DownTo 0
 		        Dim child As MenuItem = m.Item(i)
 		        GetReferringObjectRefsRegister(child, "[" + Str(i) + "]", refs)
 		      Next
 		      
-		    ElseIf obj IsA SegmentedControl Then
+		    Case IsA SegmentedControl
 		      Dim sc As SegmentedControl = obj
 		      For i As Integer = sc.Items.UBound() DownTo 0
 		        GetReferringObjectRefsRegister(sc.Items(i), "Item[" + Str(i) + "]", refs)
 		      Next
 		      
-		    ElseIf obj IsA Dictionary Then
+		    Case IsA Dictionary
 		      Dim dict As Dictionary = Dictionary(obj)
 		      For i As Integer = dict.Count() - 1 DownTo 0
 		        Dim key As Variant = dict.Key(i)
@@ -231,7 +231,7 @@ Implements XojoInstruments.Framework.XIObject
 		        GetReferringObjectRefsRegister(dict.Value(key), "Value[" + Str(i) + "]", refs)
 		      Next
 		      
-		    ElseIf obj IsA Xojo.Core.Dictionary Then
+		    Case IsA Xojo.Core.Dictionary
 		      Dim dict As Xojo.Core.Dictionary = Xojo.Core.Dictionary(obj)
 		      Dim i As Integer = 0
 		      For Each ent As Xojo.Core.DictionaryEntry In dict
@@ -240,9 +240,10 @@ Implements XojoInstruments.Framework.XIObject
 		        i = i + 1
 		      Next
 		      
+		    Case Else
 		      // TODO support more classes like Collection
 		      
-		    End If
+		    End Select
 		  End If
 		  
 		  Return refs
