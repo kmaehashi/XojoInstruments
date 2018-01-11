@@ -128,7 +128,7 @@ Implements XojoInstruments.Framework.XIObject
 		  // Returns ObjectRef for the given Variant.
 		  // If the variant points to Nil or value type, return Nil.
 		  
-		  If v <> Nil Then
+		  If v <> Nil And Not v IsA XIObject Then
 		    Dim ti As Xojo.Introspection.TypeInfo = Xojo.Introspection.GetType(v)
 		    If Not ti.IsValueType Then
 		      // Translate Array into Object.
