@@ -83,7 +83,15 @@ End
 
 #tag WindowCode
 	#tag Property, Flags = &h0
-		mLeaks() As Object
+		mLeaksArray() As Object
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		mLeaksDict1 As Dictionary
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		mLeaksDict2 As Xojo.Core.Dictionary
 	#tag EndProperty
 
 
@@ -92,7 +100,17 @@ End
 #tag Events LeakButton
 	#tag Event
 		Sub Action()
-		  mLeaks.Append(New HTTPSocket())
+		  If mLeaksDict1 = Nil Then
+		    mLeaksDict1 = New Dictionary()
+		  End If
+		  If mLeaksDict2 = Nil Then
+		    mLeaksDict2 = New Xojo.Core.Dictionary()
+		  End If
+		  
+		  Dim s As New HTTPSocket()
+		  mLeaksArray.Append(s)
+		  mLeaksDict1.Value(mLeaksDict1.Count) = s
+		  mLeaksDict2.Value(mLeaksDict2.Count) = s
 		End Sub
 	#tag EndEvent
 #tag EndEvents
