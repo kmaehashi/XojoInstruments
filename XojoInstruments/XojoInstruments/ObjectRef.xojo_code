@@ -137,12 +137,6 @@ Implements XojoInstruments.Framework.XIObject
 			  return mID
 			End Get
 		#tag EndGetter
-		#tag Setter
-			Set
-			  
-			  
-			End Set
-		#tag EndSetter
 		ID As Integer
 	#tag EndComputedProperty
 
