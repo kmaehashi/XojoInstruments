@@ -16,7 +16,7 @@ Begin Window XojoInstrumentsGUI
    MaxHeight       =   32000
    MaximizeButton  =   True
    MaxWidth        =   32000
-   MenuBar         =   2013317119
+   MenuBar         =   0
    MenuBarVisible  =   True
    MinHeight       =   300
    MinimizeButton  =   True
