@@ -1152,7 +1152,7 @@ End
 		  Else
 		    mGraphData = ""
 		  End If
-		  GraphHTMLViewer.LoadPage("", New FolderItem())
+		  GraphHTMLViewer.LoadPage("", Nil)
 		End Sub
 	#tag EndMethod
 
@@ -1438,7 +1438,7 @@ End
 		  sh.Execute(GraphDotCommand.Text, "-Tsvg " + tempFile.Path)
 		  
 		  Dim content As String = sh.ReadAll()
-		  GraphHTMLViewer.LoadPage(content, New FolderItem())
+		  GraphHTMLViewer.LoadPage(content, Nil)
 		End Sub
 	#tag EndEvent
 #tag EndEvents
