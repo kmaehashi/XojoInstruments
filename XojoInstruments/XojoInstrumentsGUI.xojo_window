@@ -50,6 +50,7 @@ Begin Window XojoInstrumentsGUI
       TextSize        =   10.0
       TextUnit        =   0
       Top             =   475
+      Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   213
@@ -80,6 +81,7 @@ Begin Window XojoInstrumentsGUI
          TextSize        =   10.0
          TextUnit        =   0
          Top             =   535
+         Transparent     =   False
          Underline       =   False
          Value           =   False
          Visible         =   True
@@ -112,6 +114,7 @@ Begin Window XojoInstrumentsGUI
          TextSize        =   10.0
          TextUnit        =   0
          Top             =   482
+         Transparent     =   False
          Underline       =   False
          Visible         =   True
          Width           =   198
@@ -143,6 +146,7 @@ Begin Window XojoInstrumentsGUI
          TextSize        =   10.0
          TextUnit        =   0
          Top             =   506
+         Transparent     =   False
          Underline       =   False
          Visible         =   True
          Width           =   198
@@ -174,6 +178,7 @@ Begin Window XojoInstrumentsGUI
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   10
+      Transparent     =   False
       Underline       =   False
       Value           =   0
       Visible         =   True
@@ -257,6 +262,7 @@ Begin Window XojoInstrumentsGUI
          TextSize        =   10.0
          TextUnit        =   0
          Top             =   68
+         Transparent     =   False
          Underline       =   False
          UseFocusRing    =   True
          Visible         =   True
@@ -343,6 +349,7 @@ Begin Window XojoInstrumentsGUI
          TextSize        =   10.0
          TextUnit        =   0
          Top             =   68
+         Transparent     =   False
          Underline       =   False
          UseFocusRing    =   True
          Visible         =   True
@@ -377,6 +384,7 @@ Begin Window XojoInstrumentsGUI
          TextSize        =   10.0
          TextUnit        =   0
          Top             =   42
+         Transparent     =   False
          Underline       =   False
          Visible         =   True
          Width           =   94
@@ -443,6 +451,7 @@ Begin Window XojoInstrumentsGUI
          TextSize        =   10.0
          TextUnit        =   0
          Top             =   62
+         Transparent     =   False
          Underline       =   False
          Value           =   True
          Visible         =   True
@@ -497,6 +506,7 @@ Begin Window XojoInstrumentsGUI
          TextSize        =   10.0
          TextUnit        =   0
          Top             =   62
+         Transparent     =   False
          Underline       =   False
          Visible         =   True
          Width           =   80
@@ -528,6 +538,7 @@ Begin Window XojoInstrumentsGUI
          TextSize        =   10.0
          TextUnit        =   0
          Top             =   42
+         Transparent     =   False
          Underline       =   False
          Visible         =   True
          Width           =   94
@@ -560,6 +571,7 @@ Begin Window XojoInstrumentsGUI
          TextSize        =   10.0
          TextUnit        =   0
          Top             =   62
+         Transparent     =   False
          Underline       =   False
          UseFocusRing    =   True
          Visible         =   True
@@ -673,6 +685,7 @@ Begin Window XojoInstrumentsGUI
          TextSize        =   10.0
          TextUnit        =   0
          Top             =   62
+         Transparent     =   False
          Underline       =   False
          UseFocusRing    =   True
          Visible         =   True
@@ -705,6 +718,7 @@ Begin Window XojoInstrumentsGUI
          TextSize        =   10.0
          TextUnit        =   0
          Top             =   64
+         Transparent     =   False
          Underline       =   False
          Visible         =   True
          Width           =   146
@@ -753,6 +767,7 @@ Begin Window XojoInstrumentsGUI
          TextSize        =   10.0
          TextUnit        =   0
          Top             =   90
+         Transparent     =   False
          Underline       =   False
          UseFocusRing    =   True
          Visible         =   True
@@ -945,6 +960,7 @@ Begin Window XojoInstrumentsGUI
       TextSize        =   10.0
       TextUnit        =   0
       Top             =   10
+      Transparent     =   False
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
@@ -979,6 +995,7 @@ Begin Window XojoInstrumentsGUI
       TextSize        =   10.0
       TextUnit        =   0
       Top             =   570
+      Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   213

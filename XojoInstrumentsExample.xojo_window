@@ -53,6 +53,7 @@ Begin Window XojoInstrumentsExample
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   20
+      Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   159
@@ -75,6 +76,7 @@ Begin Window XojoInstrumentsExample
       TabIndex        =   2
       TabPanelIndex   =   0
       Top             =   52
+      Transparent     =   False
       Visible         =   True
       Width           =   159
    End
