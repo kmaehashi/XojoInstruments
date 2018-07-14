@@ -15,11 +15,12 @@ Implements XojoInstruments.Framework.XIObject
 		  
 		  If ObjectRefMap = Nil Then Return
 		  
-		  For Each ent As Xojo.Core.DictionaryEntry In ObjectRefMap
-		    Dim oref As ObjectRef = ent.Value
-		    If oref.Value Is Nil Then
-		      oref.mReference = Nil
-		    End If
+		  For Each idToOref As XIDictionary In ObjectRefMap.Values()
+		    For Each oref As ObjectRef In idToOref.Values()
+		      If oref.mReference <> Nil And oref.mReference.Value() = Nil Then
+		        oref.mReference = Nil
+		      End If
+		    Next
 		  Next
 		End Sub
 	#tag EndMethod
@@ -74,7 +75,13 @@ Implements XojoInstruments.Framework.XIObject
 		  
 		  If ObjectRefMap = Nil Then Return Nil
 		  
-		  Return ObjectRefMap.Lookup(id, Nil)
+		  For Each idToOref As XIDictionary In ObjectRefMap.Values()
+		    If idToOref.HasKey(id) Then
+		      Return idToOref.Value(id)
+		    End If
+		  Next
+		  
+		  Return Nil
 		End Function
 	#tag EndMethod
 
@@ -88,20 +95,28 @@ Implements XojoInstruments.Framework.XIObject
 		    ObjectRefMap = New XIDictionary()
 		  End If
 		  
-		  // If the object already has a reference, return it.
-		  For Each ent As Xojo.Core.DictionaryEntry In ObjectRefMap
-		    If ObjectRef(ent.Value).Value Is obj Then Return ent.Value
-		  Next
+		  Dim className As String = Xojo.Introspection.GetType(obj).FullName
+		  Dim idToOref As XIDictionary = ObjectRefMap.Lookup(className, Nil)
+		  If idToOref = Nil Then
+		    idToOref = New XIDictionary()
+		    ObjectRefMap.Value(className) = idToOref
+		  Else
+		    // If the object already has a reference, return it.
+		    For Each oref As ObjectRef In idToOref.Values()
+		      If oref.Value Is obj Then Return oref
+		    Next
+		  End If
 		  
 		  // Create a new object reference.
+		  LastID = LastID + 1
 		  Dim oref As New ObjectRef()
-		  oref.mID = ObjectRefMap.Count
+		  oref.mID = LastID
 		  oref.mReference = New XIWeakRef(obj)
-		  oref.mClassName = Xojo.Introspection.GetType(obj).FullName
+		  oref.mClassName = className
 		  oref.mHint = GenerateHint(obj)
 		  
 		  // Register the object reference to the list.
-		  ObjectRefMap.Value(oref.ID) = oref
+		  idToOref.Value(oref.mID) = oref
 		  
 		  Return oref
 		End Function
@@ -134,6 +149,10 @@ Implements XojoInstruments.Framework.XIObject
 		#tag EndGetter
 		ID As Integer
 	#tag EndComputedProperty
+
+	#tag Property, Flags = &h21
+		Private Shared LastID As Integer = -1
+	#tag EndProperty
 
 	#tag Property, Flags = &h21
 		Private mClassName As String
