@@ -236,7 +236,6 @@ Implements XojoInstruments.Framework.XIObject
 		Private Shared Sub GetReferringObjectRefsRegister(v As Variant, key As String, dict As XIDictionary)
 		  If v = Nil Or v IsA XIObject Then Return
 		  
-		  Dim oref As ObjectRef
 		  Dim ti As Xojo.Introspection.TypeInfo = Xojo.Introspection.GetType(v)
 		  
 		  // `ti` will become Nil if the variant is an instance of
