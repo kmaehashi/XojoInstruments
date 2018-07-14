@@ -13,9 +13,7 @@ Implements XojoInstruments.Framework.XIObject
 		  
 		  #pragma BackgroundTasks False
 		  
-		  If ObjectRefMap = Nil Then
-		    ObjectRefMap = New XIDictionary()
-		  End If
+		  If ObjectRefMap = Nil Then Return
 		  
 		  For Each ent As Xojo.Core.DictionaryEntry In ObjectRefMap
 		    Dim oref As ObjectRef = ent.Value
@@ -74,10 +72,7 @@ Implements XojoInstruments.Framework.XIObject
 		  
 		  #pragma BackgroundTasks False
 		  
-		  If ObjectRefMap = Nil Then
-		    ObjectRefMap = New XIDictionary()
-		    Return Nil
-		  End If
+		  If ObjectRefMap = Nil Then Return Nil
 		  
 		  Return ObjectRefMap.Lookup(id, Nil)
 		End Function
