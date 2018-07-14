@@ -124,24 +124,6 @@ Implements XojoInstruments.Framework.XIObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Shared Function GetObjectRefForVariant(v As Variant) As ObjectRef
-		  // Returns ObjectRef for the given Variant.
-		  // If the variant points to Nil or value type, return Nil.
-		  
-		  If v <> Nil And Not v IsA XIObject Then
-		    Dim ti As Xojo.Introspection.TypeInfo = Xojo.Introspection.GetType(v)
-		    If Not ti.IsValueType Then
-		      // Translate Array into Object.
-		      If ti.IsArray() Then v = v.ObjectValue
-		      Return ObjectRef.ReferenceFor(v)
-		    End If
-		  End If
-		  
-		  Return Nil
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
 		Private Shared Function GetReferringObjectRefs(oref As ObjectRef) As XojoInstruments.Framework.XIDictionary
 		  // Finds all objects directly referenced by the specified oref, as possible as we can.
 		  
@@ -252,8 +234,21 @@ Implements XojoInstruments.Framework.XIObject
 
 	#tag Method, Flags = &h21
 		Private Shared Sub GetReferringObjectRefsRegister(v As Variant, key As String, dict As XIDictionary)
-		  Dim oref As ObjectRef = GetObjectRefForVariant(v)
-		  If oref <> Nil Then dict.Value(key) = oref.ID
+		  If v = Nil Or v IsA XIObject Then Return
+		  
+		  Dim ti As Xojo.Introspection.TypeInfo = Xojo.Introspection.GetType(v)
+		  
+		  // `ti` will become Nil if the variant is an instance of
+		  // the Xojo framework private class, e.g., `_Profile.Profile`.
+		  If ti = Nil Or ti.IsValueType Then Return
+		  
+		  // Translate Array into Object.
+		  If ti.IsArray() Then
+		    v = v.ObjectValue
+		  End If
+		  
+		  // Register.
+		  dict.Value(key) = ObjectRef.ReferenceFor(v).ID
 		End Sub
 	#tag EndMethod
 
