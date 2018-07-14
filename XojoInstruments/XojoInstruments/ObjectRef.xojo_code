@@ -107,7 +107,7 @@ Implements XojoInstruments.Framework.XIObject
 		    // If the object already has a reference, return it.
 		    For Each idAndOref As Xojo.Core.DictionaryEntry In idToOref
 		      Dim oref As ObjectRef = idAndOref.Value
-		      If oref.Value Is obj Then Return oref
+		      If oref.mReference <> Nil And oref.mReference.Value() Is obj Then Return oref
 		    Next
 		  End If
 		  
