@@ -12,18 +12,6 @@ Implements XIObject
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
-		Function Keys() As Xojo.Core.Iterable
-		  Return New XIDictionaryIterable(Me.GetIterator(), False)
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Function Values() As Xojo.Core.Iterable
-		  Return New XIDictionaryIterable(Me.GetIterator(), True)
-		End Function
-	#tag EndMethod
-
 
 	#tag ViewBehavior
 		#tag ViewProperty
