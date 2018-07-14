@@ -1241,6 +1241,7 @@ End
 		  //
 		  //  **************************************************************************
 		  
+		  #Pragma Unused obj
 		  Break
 		End Sub
 	#tag EndMethod
@@ -1255,6 +1256,7 @@ End
 		  //
 		  //  **************************************************************************
 		  
+		  #Pragma Unused obj
 		  Break
 		End Sub
 	#tag EndMethod
@@ -1567,6 +1569,9 @@ End
 #tag Events Label4
 	#tag Event
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
+		  #Pragma Unused X
+		  #Pragma Unused Y
+		  
 		  ShowURL(Me.Text)
 		End Function
 	#tag EndEvent

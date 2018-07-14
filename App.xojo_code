@@ -5,6 +5,7 @@ Inherits Application
 		Sub Open()
 		  XojoInstruments.Start()
 		  Dim w As New XojoInstrumentsExample()
+		  w.Show()
 		End Sub
 	#tag EndEvent
 

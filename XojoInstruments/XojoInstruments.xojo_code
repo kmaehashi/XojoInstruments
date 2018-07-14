@@ -5,6 +5,7 @@ Protected Module XojoInstruments
 		  If mWindow = Nil Then
 		    // Take a snapshot to register Introspection-related things to system object list.
 		    Dim snap As New Snapshot(True)
+		    #Pragma Unused snap
 		    
 		    // Create a window.
 		    mWindow = New XojoInstrumentsGUI()
