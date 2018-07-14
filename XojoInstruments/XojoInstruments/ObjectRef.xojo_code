@@ -15,8 +15,10 @@ Implements XojoInstruments.Framework.XIObject
 		  
 		  If ObjectRefMap = Nil Then Return
 		  
-		  For Each idToOref As XIDictionary In ObjectRefMap.Values()
-		    For Each oref As ObjectRef In idToOref.Values()
+		  For Each classAndDict As Xojo.Core.DictionaryEntry In ObjectRefMap
+		    Dim idToOref As XIDictionary = classAndDict.Value
+		    For Each idAndOref As Xojo.Core.DictionaryEntry In idToOref
+		      Dim oref As ObjectRef = idAndOref.Value
 		      If oref.mReference <> Nil And oref.mReference.Value() = Nil Then
 		        oref.mReference = Nil
 		      End If
@@ -75,7 +77,8 @@ Implements XojoInstruments.Framework.XIObject
 		  
 		  If ObjectRefMap = Nil Then Return Nil
 		  
-		  For Each idToOref As XIDictionary In ObjectRefMap.Values()
+		  For Each classAndDict As Xojo.Core.DictionaryEntry In ObjectRefMap
+		    Dim idToOref As XIDictionary = classAndDict.Value
 		    If idToOref.HasKey(id) Then
 		      Return idToOref.Value(id)
 		    End If
@@ -102,7 +105,8 @@ Implements XojoInstruments.Framework.XIObject
 		    ObjectRefMap.Value(className) = idToOref
 		  Else
 		    // If the object already has a reference, return it.
-		    For Each oref As ObjectRef In idToOref.Values()
+		    For Each idAndOref As Xojo.Core.DictionaryEntry In idToOref
+		      Dim oref As ObjectRef = idAndOref.Value
 		      If oref.Value Is obj Then Return oref
 		    Next
 		  End If
