@@ -2,23 +2,23 @@
 Protected Module XojoInstruments
 	#tag Method, Flags = &h1
 		Protected Sub Start()
-		  If mWindow = Nil Then
-		    // Take a snapshot to register Introspection-related things to system object list.
-		    Dim snap As New Snapshot(True)
-		    #Pragma Unused snap
+		  #if TargetDesktop
+		    Static desktopGUI As XojoInstrumentsGUI
 		    
-		    // Create a window.
-		    mWindow = New XojoInstrumentsGUI()
-		  End If
-		  
-		  mWindow.Show()
+		    If desktopGUI = Nil Then
+		      // Take a snapshot to register Introspection-related things to system object list.
+		      Dim snap As New Snapshot(True)
+		      #Pragma Unused snap
+		      
+		      // Create a window.
+		      desktopGUI = New XojoInstrumentsGUI()
+		    End If
+		    
+		    desktopGUI.Show()
+		  #endif
 		End Sub
 	#tag EndMethod
 
-
-	#tag Property, Flags = &h21
-		Private mWindow As XojoInstrumentsGUI
-	#tag EndProperty
 
 	#tag ComputedProperty, Flags = &h1
 		#tag Getter

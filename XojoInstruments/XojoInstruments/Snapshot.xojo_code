@@ -183,28 +183,34 @@ Implements XojoInstruments.Framework.XIObject
 		    Next
 		    
 		    // Handle special classes.
+		    
+		    #if TargetDesktop
+		      Select Case obj
+		      Case IsA Window
+		        Dim win As Window = obj
+		        // Note: non-control window items cannot be reached.
+		        For i As Integer = win.ControlCount - 1 DownTo 0
+		          Dim ctrl As Control = win.Control(i)
+		          GetReferringObjectRefsRegister(ctrl, ctrl.Name, refs)
+		        Next
+		        
+		      Case IsA MenuItem
+		        Dim m As MenuItem = obj
+		        For i As Integer = m.Count() - 1 DownTo 0
+		          Dim child As MenuItem = m.Item(i)
+		          GetReferringObjectRefsRegister(child, "[" + Str(i) + "]", refs)
+		        Next
+		        
+		      Case IsA SegmentedControl
+		        Dim sc As SegmentedControl = obj
+		        For i As Integer = sc.Items.UBound() DownTo 0
+		          GetReferringObjectRefsRegister(sc.Items(i), "Item[" + Str(i) + "]", refs)
+		        Next
+		        
+		      End Select
+		    #endif
+		    
 		    Select Case obj
-		    Case IsA Window
-		      Dim win As Window = obj
-		      // Note: non-control window items cannot be reached.
-		      For i As Integer = win.ControlCount - 1 DownTo 0
-		        Dim ctrl As Control = win.Control(i)
-		        GetReferringObjectRefsRegister(ctrl, ctrl.Name, refs)
-		      Next
-		      
-		    Case IsA MenuItem
-		      Dim m As MenuItem = obj
-		      For i As Integer = m.Count() - 1 DownTo 0
-		        Dim child As MenuItem = m.Item(i)
-		        GetReferringObjectRefsRegister(child, "[" + Str(i) + "]", refs)
-		      Next
-		      
-		    Case IsA SegmentedControl
-		      Dim sc As SegmentedControl = obj
-		      For i As Integer = sc.Items.UBound() DownTo 0
-		        GetReferringObjectRefsRegister(sc.Items(i), "Item[" + Str(i) + "]", refs)
-		      Next
-		      
 		    Case IsA Dictionary
 		      Dim dict As Dictionary = Dictionary(obj)
 		      For i As Integer = dict.Count() - 1 DownTo 0
@@ -222,11 +228,10 @@ Implements XojoInstruments.Framework.XIObject
 		        i = i + 1
 		      Next
 		      
-		    Case Else
-		      // TODO support more classes like Collection
-		      
 		    End Select
 		  End If
+		  
+		  // TODO support more classes like Collection
 		  
 		  Return refs
 		End Function

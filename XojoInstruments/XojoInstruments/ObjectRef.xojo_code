@@ -34,15 +34,20 @@ Implements XojoInstruments.Framework.XIObject
 		  // Note: as hints will not be updated, we should avoid using mutable values
 		  // as much as possible.
 		  
+		  #if TargetDesktop
+		    Select Case obj
+		    Case IsA Control
+		      Dim ctrl As Control = Control(obj)
+		      Return ctrl.Name + _
+		      If(ctrl.Window <> Nil, " [" + Xojo.Introspection.GetType(ctrl.Window).Name + "]", " (no window)")
+		      
+		    Case IsA MenuItem
+		      Return MenuItem(obj).Name
+		      
+		    End Select
+		  #endif
+		  
 		  Select Case obj
-		  Case IsA Control
-		    Dim ctrl As Control = Control(obj)
-		    Return ctrl.Name + _
-		    If(ctrl.Window <> Nil, " [" + Xojo.Introspection.GetType(ctrl.Window).Name + "]", " (no window)")
-		    
-		  Case IsA MenuItem
-		    Return MenuItem(obj).Name
-		    
 		  Case IsA Picture
 		    Return Str(Picture(obj).Width) + " x " + Str(Picture(obj).Height)
 		    
