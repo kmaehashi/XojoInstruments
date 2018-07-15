@@ -216,7 +216,7 @@ Begin Window XojoInstrumentsGUI
          Transparent     =   True
          Underline       =   False
          Visible         =   True
-         Width           =   429
+         Width           =   535
       End
       Begin Listbox SnapshotObjectList
          AutoDeactivate  =   True
@@ -303,7 +303,7 @@ Begin Window XojoInstrumentsGUI
          Transparent     =   True
          Underline       =   False
          Visible         =   True
-         Width           =   429
+         Width           =   535
       End
       Begin Listbox ComparisonList
          AutoDeactivate  =   True
@@ -422,7 +422,7 @@ Begin Window XojoInstrumentsGUI
          Transparent     =   True
          Underline       =   False
          Visible         =   True
-         Width           =   429
+         Width           =   535
       End
       Begin CheckBox GraphExcludeNodesWithoutEdgeCheck
          AutoDeactivate  =   True
@@ -610,7 +610,7 @@ Begin Window XojoInstrumentsGUI
          Transparent     =   True
          Underline       =   False
          Visible         =   True
-         Width           =   404
+         Width           =   535
       End
       Begin Label LabelBackrefObjectID
          AutoDeactivate  =   True
@@ -623,7 +623,7 @@ Begin Window XojoInstrumentsGUI
          Index           =   -2147483648
          InitialParent   =   "ResultTabPanel"
          Italic          =   False
-         Left            =   245
+         Left            =   249
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -641,7 +641,7 @@ Begin Window XojoInstrumentsGUI
          TextFont        =   "System"
          TextSize        =   10.0
          TextUnit        =   0
-         Top             =   64
+         Top             =   62
          Transparent     =   True
          Underline       =   False
          Visible         =   True
@@ -665,7 +665,7 @@ Begin Window XojoInstrumentsGUI
          Index           =   -2147483648
          InitialParent   =   "ResultTabPanel"
          Italic          =   False
-         Left            =   301
+         Left            =   313
          LimitText       =   0
          LockBottom      =   False
          LockedInPosition=   False
@@ -704,7 +704,7 @@ Begin Window XojoInstrumentsGUI
          Index           =   -2147483648
          InitialParent   =   "ResultTabPanel"
          Italic          =   False
-         Left            =   422
+         Left            =   435
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
