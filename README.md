@@ -6,6 +6,7 @@ Xojo Instruments is a runtime tool to diagnose memory leaks and circular referen
 
 ## Quick Start
 
+1. Download the latest release from [Releases](https://github.com/kmaehashi/XojoInstruments/releases).
 1. Open Xojo Instruments project in Xojo IDE.
 1. Copy `XojoInstruments` folder to your project using the IDE.
 1. Insert the following line to `App.Open` event handler of your project.
