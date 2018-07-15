@@ -36,7 +36,7 @@ Protected Module XojoInstruments
 	#tag Constant, Name = MajorVersion, Type = Double, Dynamic = False, Default = \"0", Scope = Public
 	#tag EndConstant
 
-	#tag Constant, Name = MinorVersion, Type = Double, Dynamic = False, Default = \"1", Scope = Public
+	#tag Constant, Name = MinorVersion, Type = Double, Dynamic = False, Default = \"2", Scope = Public
 	#tag EndConstant
 
 
