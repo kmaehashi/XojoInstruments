@@ -236,7 +236,7 @@ Begin Window XojoInstrumentsGUI
          GridLinesVertical=   0
          HasHeading      =   True
          HeadingIndex    =   -1
-         Height          =   512
+         Height          =   492
          HelpTag         =   ""
          Hierarchical    =   True
          Index           =   -2147483648
@@ -323,7 +323,7 @@ Begin Window XojoInstrumentsGUI
          GridLinesVertical=   0
          HasHeading      =   True
          HeadingIndex    =   -1
-         Height          =   512
+         Height          =   492
          HelpTag         =   ""
          Hierarchical    =   True
          Index           =   -2147483648
@@ -370,12 +370,12 @@ Begin Window XojoInstrumentsGUI
          Index           =   -2147483648
          InitialParent   =   "ResultTabPanel"
          Italic          =   False
-         Left            =   686
-         LockBottom      =   False
+         Left            =   249
+         LockBottom      =   True
          LockedInPosition=   False
-         LockLeft        =   False
-         LockRight       =   True
-         LockTop         =   True
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   False
          Scope           =   2
          TabIndex        =   5
          TabPanelIndex   =   2
@@ -383,7 +383,7 @@ Begin Window XojoInstrumentsGUI
          TextFont        =   "System"
          TextSize        =   10.0
          TextUnit        =   0
-         Top             =   42
+         Top             =   566
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -524,12 +524,12 @@ Begin Window XojoInstrumentsGUI
          Index           =   -2147483648
          InitialParent   =   "ResultTabPanel"
          Italic          =   False
-         Left            =   686
-         LockBottom      =   False
+         Left            =   249
+         LockBottom      =   True
          LockedInPosition=   False
-         LockLeft        =   False
-         LockRight       =   True
-         LockTop         =   True
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   False
          Scope           =   2
          TabIndex        =   2
          TabPanelIndex   =   1
@@ -537,7 +537,7 @@ Begin Window XojoInstrumentsGUI
          TextFont        =   "System"
          TextSize        =   10.0
          TextUnit        =   0
-         Top             =   42
+         Top             =   566
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -914,6 +914,70 @@ Begin Window XojoInstrumentsGUI
          Underline       =   True
          Visible         =   True
          Width           =   342
+      End
+      Begin PushButton DoTrackBackrefSnapshotButton
+         AutoDeactivate  =   True
+         Bold            =   False
+         ButtonStyle     =   "2"
+         Cancel          =   False
+         Caption         =   "Track Backreference"
+         Default         =   False
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "ResultTabPanel"
+         Italic          =   False
+         Left            =   355
+         LockBottom      =   True
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   False
+         Scope           =   2
+         TabIndex        =   3
+         TabPanelIndex   =   1
+         TabStop         =   True
+         TextFont        =   "System"
+         TextSize        =   10.0
+         TextUnit        =   0
+         Top             =   566
+         Transparent     =   False
+         Underline       =   False
+         Visible         =   True
+         Width           =   118
+      End
+      Begin PushButton DoTrackBackrefCompareButton
+         AutoDeactivate  =   True
+         Bold            =   False
+         ButtonStyle     =   "2"
+         Cancel          =   False
+         Caption         =   "Track Backreference"
+         Default         =   False
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "ResultTabPanel"
+         Italic          =   False
+         Left            =   355
+         LockBottom      =   True
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   False
+         Scope           =   2
+         TabIndex        =   6
+         TabPanelIndex   =   2
+         TabStop         =   True
+         TextFont        =   "System"
+         TextSize        =   10.0
+         TextUnit        =   0
+         Top             =   566
+         Transparent     =   False
+         Underline       =   False
+         Visible         =   True
+         Width           =   118
       End
    End
    Begin Listbox SnapshotList
@@ -1589,6 +1653,42 @@ End
 		  
 		  ShowURL(Me.Text)
 		End Function
+	#tag EndEvent
+#tag EndEvents
+#tag Events DoTrackBackrefSnapshotButton
+	#tag Event
+		Sub Action()
+		  If _
+		    SnapshotObjectList.ListIndex < 0 Or _
+		    SnapshotObjectList.ListCount <= SnapshotObjectList.ListIndex Or _
+		    SnapshotObjectList.RowIsFolder(SnapshotObjectList.ListIndex) Then
+		    MsgBox("Please select a single object ID to track backreference.")
+		    Return
+		  End If
+		  
+		  Dim objId As Integer = SnapshotObjectList.RowTag(SnapshotObjectList.ListIndex)
+		  BackrefInput.Text = Str(objId)
+		  DoBackrefShowButton.Push()
+		  ResultTabPanel.Value = 2
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events DoTrackBackrefCompareButton
+	#tag Event
+		Sub Action()
+		  If _
+		    ComparisonList.ListIndex < 0 Or _
+		    ComparisonList.ListCount <= ComparisonList.ListIndex Or _
+		    ComparisonList.RowIsFolder(ComparisonList.ListIndex) Then
+		    MsgBox("Please select a single object ID to track backreference.")
+		    Return
+		  End If
+		  
+		  Dim objId As Integer = ComparisonList.RowTag(ComparisonList.ListIndex)
+		  BackrefInput.Text = Str(objId)
+		  DoBackrefShowButton.Push()
+		  ResultTabPanel.Value = 2
+		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events SnapshotList
