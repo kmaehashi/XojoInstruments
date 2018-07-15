@@ -252,6 +252,12 @@ Implements XojoInstruments.Framework.XIObject
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Shared Sub RegisterSystemObject(obj As Object)
+		  SystemObjectsRefIDs.Value(ObjectRef.ReferenceFor(obj).ID) = True
+		End Sub
+	#tag EndMethod
+
 
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter

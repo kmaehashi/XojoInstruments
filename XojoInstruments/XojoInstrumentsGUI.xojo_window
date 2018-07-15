@@ -1004,6 +1004,17 @@ End
 #tag EndWindow
 
 #tag WindowCode
+	#tag Event
+		Sub Open()
+		  // Hide objects in the window from snapshot.
+		  XojoInstruments.Snapshot.RegisterSystemObject(Me)
+		  For i As Integer = Me.ControlCount - 1 DownTo 0
+		    XojoInstruments.Snapshot.RegisterSystemObject(Me.Control(i))
+		  Next
+		End Sub
+	#tag EndEvent
+
+
 	#tag Method, Flags = &h21
 		Private Function DoCapture(createGraph As Boolean) As XojoInstruments.Snapshot
 		  Dim snap As New XojoInstruments.Snapshot(createGraph)
