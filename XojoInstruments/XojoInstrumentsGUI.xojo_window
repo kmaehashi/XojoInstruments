@@ -1438,7 +1438,11 @@ End
 		    Dim oref As XojoInstruments.ObjectRef = XojoInstruments.ObjectRef.ReferenceByID(s)
 		    Dim obj As Object = oref.Value()
 		    
-		    DoInspectObjectInIDE(s, obj)
+		    If obj <> Nil Then
+		      DoInspectObjectInIDE(s, obj)
+		    Else
+		      MsgBox("The object has already been garbage collected.")
+		    End If
 		    
 		    Return True
 		  End If
