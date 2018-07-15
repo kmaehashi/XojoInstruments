@@ -554,7 +554,7 @@ Begin Window XojoInstrumentsGUI
          HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "ResultTabPanel"
-         InitialValue    =   "/usr/local/bin/dot\n/opt/homebrew/bin/dot\ndot"
+         InitialValue    =   ""
          Italic          =   False
          Left            =   460
          ListIndex       =   0
@@ -1576,6 +1576,23 @@ End
 		  #else
 		    MsgBox("Sorry, this feature is only available in Debug Run.")
 		  #endif
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events GraphDotCommand
+	#tag Event
+		Sub Open()
+		  #if TargetMacOS Or TargetLinux
+		    For Each cand As String In Array("/usr/local/bin/dot", "/usr/bin/dot", "/opt/homebrew/bin/dot")
+		      Dim f As FolderItem = GetFolderItem(cand, FolderItem.PathTypeNative)
+		      If f <> Nil And f.Exists Then
+		        Me.AddRow(cand)
+		      End If
+		    Next
+		  #endif
+		  
+		  Me.AddRow("dot")
+		  Me.ListIndex = 0
 		End Sub
 	#tag EndEvent
 #tag EndEvents
