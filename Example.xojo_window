@@ -1,5 +1,5 @@
 #tag Window
-Begin Window XojoInstrumentsExample
+Begin Window Example
    BackColor       =   &cFFFFFF00
    Backdrop        =   0
    CloseButton     =   True
@@ -79,6 +79,35 @@ Begin Window XojoInstrumentsExample
       Transparent     =   False
       Visible         =   True
       Width           =   159
+   End
+   Begin ExampleContainerControl ExampleContainerControl1
+      AcceptFocus     =   False
+      AcceptTabs      =   True
+      AutoDeactivate  =   True
+      BackColor       =   &cFFFFFF00
+      Backdrop        =   0
+      DoubleBuffer    =   False
+      Enabled         =   True
+      EraseBackground =   True
+      HasBackColor    =   False
+      Height          =   70
+      HelpTag         =   ""
+      InitialParent   =   ""
+      Left            =   20
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   2
+      TabIndex        =   3
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   88
+      Transparent     =   True
+      UseFocusRing    =   False
+      Visible         =   True
+      Width           =   162
    End
 End
 #tag EndWindow
