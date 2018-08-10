@@ -3,7 +3,9 @@ Protected Class ObjectRef
 Implements XojoInstruments.Framework.XIObject
 	#tag Method, Flags = &h21
 		Private Sub Constructor()
-		  
+		  Static LastID As Integer = -1
+		  LastID = LastID + 1
+		  mID = LastID
 		End Sub
 	#tag EndMethod
 
@@ -117,9 +119,7 @@ Implements XojoInstruments.Framework.XIObject
 		  End If
 		  
 		  // Create a new object reference.
-		  LastID = LastID + 1
 		  Dim oref As New ObjectRef()
-		  oref.mID = LastID
 		  oref.mReference = New XIWeakRef(obj)
 		  oref.mClassName = className
 		  oref.mHint = GenerateHint(obj)
@@ -158,10 +158,6 @@ Implements XojoInstruments.Framework.XIObject
 		#tag EndGetter
 		ID As Integer
 	#tag EndComputedProperty
-
-	#tag Property, Flags = &h21
-		Private Shared LastID As Integer = -1
-	#tag EndProperty
 
 	#tag Property, Flags = &h21
 		Private mClassName As String
