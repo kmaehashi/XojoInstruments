@@ -30,7 +30,7 @@ Protected Module XojoInstruments
 	#tag EndComputedProperty
 
 
-	#tag Constant, Name = BugVersion, Type = Double, Dynamic = False, Default = \"0", Scope = Public
+	#tag Constant, Name = BugVersion, Type = Double, Dynamic = False, Default = \"1", Scope = Public
 	#tag EndConstant
 
 	#tag Constant, Name = MajorVersion, Type = Double, Dynamic = False, Default = \"0", Scope = Public
