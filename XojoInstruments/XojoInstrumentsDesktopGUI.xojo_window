@@ -1,5 +1,5 @@
 #tag Window
-Begin Window XojoInstrumentsGUI
+Begin Window XojoInstrumentsDesktopGUI
    BackColor       =   &cFFFFFF00
    Backdrop        =   0
    CloseButton     =   True

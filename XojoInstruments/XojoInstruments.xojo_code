@@ -3,7 +3,7 @@ Protected Module XojoInstruments
 	#tag Method, Flags = &h1
 		Protected Sub Start()
 		  #if TargetDesktop
-		    Static desktopGUI As XojoInstrumentsGUI
+		    Static desktopGUI As XojoInstrumentsDesktopGUI
 		    
 		    If desktopGUI = Nil Then
 		      // Take a snapshot to register Introspection-related things to system object list.
@@ -11,7 +11,7 @@ Protected Module XojoInstruments
 		      #Pragma Unused snap
 		      
 		      // Create a window.
-		      desktopGUI = New XojoInstrumentsGUI()
+		      desktopGUI = New XojoInstrumentsDesktopGUI()
 		    End If
 		    
 		    desktopGUI.Show()
