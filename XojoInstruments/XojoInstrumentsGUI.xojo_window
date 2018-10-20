@@ -470,7 +470,7 @@ Begin Window XojoInstrumentsGUI
          LockLeft        =   True
          LockRight       =   True
          LockTop         =   True
-         Renderer        =   1
+         Renderer        =   0
          Scope           =   2
          TabIndex        =   5
          TabPanelIndex   =   4
@@ -1244,7 +1244,7 @@ End
 		  Else
 		    mGraphData = ""
 		  End If
-		  GraphHTMLViewer.LoadPage("", Nil)
+		  GraphHTMLViewer.LoadURL("about:blank")
 		End Sub
 	#tag EndMethod
 
@@ -1349,6 +1349,10 @@ End
 
 	#tag Property, Flags = &h21
 		Private mSnapshotDelta As XojoInstruments.SnapshotDelta
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private mTempGraphHTMLFile As XojoInstruments.Framework.XINamedTemporaryFile
 	#tag EndProperty
 
 
@@ -1523,22 +1527,30 @@ End
 		    Return
 		  End If
 		  
-		  Dim tempFile As Xojo.IO.FolderItem = _
-		  Xojo.IO.SpecialFolder.Temporary.Child("xojo_instruments.dot")
-		  Dim tos As Xojo.IO.TextOutputStream = _
-		  Xojo.IO.TextOutputStream.Create(tempFile, Xojo.Core.TextEncoding.UTF8)
-		  Try
-		    tos.Write(mGraphData.ToText())
-		  Finally
-		    tos.Close()
-		  End Try
+		  Dim tos As Xojo.IO.TextOutputStream
+		  
+		  Dim tempDotFile As New XINamedTemporaryFile()
+		  tos = Xojo.IO.TextOutputStream.Create(tempDotFile.GetFolderItem(), Xojo.Core.TextEncoding.UTF8)
+		  tos.Write(mGraphData.ToText())
+		  tos.Close()
 		  
 		  Dim sh As New Shell()
 		  sh.Mode = 0
-		  sh.Execute(GraphDotCommand.Text, "-Tsvg " + tempFile.Path)
+		  sh.Execute(GraphDotCommand.Text, "-Tsvg " + tempDotFile.GetFolderItem().Path)
 		  
 		  Dim content As String = sh.ReadAll()
-		  GraphHTMLViewer.LoadPage(content, Nil)
+		  
+		  #If TargetWin32
+		    // To display SVG using Navive (Internet Explorer) renderer.
+		    content = "<html><meta http-equiv=""X-UA-Compatible"" content=""IE=edge""/>" + content + "</html>"
+		  #Endif
+		  
+		  mTempGraphHTMLFile = New XINamedTemporaryFile()
+		  tos = Xojo.IO.TextOutputStream.Create(mTempGraphHTMLFile.GetFolderItem(), Xojo.Core.TextEncoding.UTF8)
+		  tos.Write(content.ToText())
+		  tos.Close()
+		  
+		  GraphHTMLViewer.LoadURL(mTempGraphHTMLFile.GetFolderItem().URLPath)
 		End Sub
 	#tag EndEvent
 #tag EndEvents
