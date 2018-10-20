@@ -3,26 +3,22 @@ Protected Class App
 Inherits Application
 	#tag Event
 		Sub Open()
+		  // -------------------------------------------------------------------- //
+		  
+		  // To install XojoInstruments to your project:
+		  // 1. Copy `XojoInstruments` folder to your project using IDE.
+		  // 2. Add the following line to `App.Open` event handler of your project.
+		  
 		  XojoInstruments.Start()
+		  
+		  // -------------------------------------------------------------------- //
+		  
+		  
+		  // Launch an example application to demonstrate memory leak.
 		  Dim w As New Example()
 		  w.Show()
 		End Sub
 	#tag EndEvent
-
-
-	#tag Constant, Name = kEditClear, Type = String, Dynamic = False, Default = \"&Delete", Scope = Public
-		#Tag Instance, Platform = Windows, Language = Default, Definition  = \"&Delete"
-		#Tag Instance, Platform = Linux, Language = Default, Definition  = \"&Delete"
-	#tag EndConstant
-
-	#tag Constant, Name = kFileQuit, Type = String, Dynamic = False, Default = \"&Quit", Scope = Public
-		#Tag Instance, Platform = Windows, Language = Default, Definition  = \"E&xit"
-	#tag EndConstant
-
-	#tag Constant, Name = kFileQuitShortcut, Type = String, Dynamic = False, Default = \"", Scope = Public
-		#Tag Instance, Platform = Mac OS, Language = Default, Definition  = \"Cmd+Q"
-		#Tag Instance, Platform = Linux, Language = Default, Definition  = \"Ctrl+Q"
-	#tag EndConstant
 
 
 	#tag ViewBehavior
