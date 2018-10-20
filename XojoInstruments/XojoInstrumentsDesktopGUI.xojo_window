@@ -31,7 +31,7 @@ Begin Window XojoInstrumentsDesktopGUI
       Bold            =   False
       Caption         =   ""
       Enabled         =   True
-      Height          =   87
+      Height          =   100
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -49,11 +49,11 @@ Begin Window XojoInstrumentsDesktopGUI
       TextFont        =   "System"
       TextSize        =   10.0
       TextUnit        =   0
-      Top             =   475
+      Top             =   460
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   213
+      Width           =   200
       Begin CheckBox CaptureBuildRefGraphCheck
          AutoDeactivate  =   True
          Bold            =   False
@@ -66,7 +66,7 @@ Begin Window XojoInstrumentsDesktopGUI
          Index           =   -2147483648
          InitialParent   =   "CaptureControlGroup"
          Italic          =   False
-         Left            =   19
+         Left            =   20
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -80,12 +80,12 @@ Begin Window XojoInstrumentsDesktopGUI
          TextFont        =   "System"
          TextSize        =   10.0
          TextUnit        =   0
-         Top             =   535
+         Top             =   530
          Transparent     =   False
          Underline       =   False
          Value           =   False
          Visible         =   True
-         Width           =   161
+         Width           =   180
       End
       Begin PushButton DoCaptureButton
          AutoDeactivate  =   True
@@ -100,7 +100,7 @@ Begin Window XojoInstrumentsDesktopGUI
          Index           =   -2147483648
          InitialParent   =   "CaptureControlGroup"
          Italic          =   False
-         Left            =   19
+         Left            =   20
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -113,11 +113,11 @@ Begin Window XojoInstrumentsDesktopGUI
          TextFont        =   "System"
          TextSize        =   10.0
          TextUnit        =   0
-         Top             =   482
+         Top             =   470
          Transparent     =   False
          Underline       =   False
          Visible         =   True
-         Width           =   198
+         Width           =   180
       End
       Begin PushButton DoCaptureCompareButton
          AutoDeactivate  =   True
@@ -132,7 +132,7 @@ Begin Window XojoInstrumentsDesktopGUI
          Index           =   -2147483648
          InitialParent   =   "CaptureControlGroup"
          Italic          =   False
-         Left            =   19
+         Left            =   20
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -145,23 +145,23 @@ Begin Window XojoInstrumentsDesktopGUI
          TextFont        =   "System"
          TextSize        =   10.0
          TextUnit        =   0
-         Top             =   506
+         Top             =   500
          Transparent     =   False
          Underline       =   False
          Visible         =   True
-         Width           =   198
+         Width           =   180
       End
    End
    Begin TabPanel ResultTabPanel
       AutoDeactivate  =   True
       Bold            =   False
       Enabled         =   True
-      Height          =   580
+      Height          =   590
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   235
+      Left            =   220
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
@@ -177,12 +177,12 @@ Begin Window XojoInstrumentsDesktopGUI
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   10
+      Top             =   0
       Transparent     =   False
       Underline       =   False
       Value           =   0
       Visible         =   True
-      Width           =   555
+      Width           =   570
       Begin Label LabelSnapshot
          AutoDeactivate  =   True
          Bold            =   True
@@ -194,7 +194,7 @@ Begin Window XojoInstrumentsDesktopGUI
          Index           =   -2147483648
          InitialParent   =   "ResultTabPanel"
          Italic          =   False
-         Left            =   245
+         Left            =   230
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -212,11 +212,11 @@ Begin Window XojoInstrumentsDesktopGUI
          TextFont        =   "System"
          TextSize        =   10.0
          TextUnit        =   0
-         Top             =   40
+         Top             =   30
          Transparent     =   True
          Underline       =   False
          Visible         =   True
-         Width           =   535
+         Width           =   550
       End
       Begin Listbox SnapshotObjectList
          AutoDeactivate  =   True
@@ -236,14 +236,14 @@ Begin Window XojoInstrumentsDesktopGUI
          GridLinesVertical=   0
          HasHeading      =   True
          HeadingIndex    =   -1
-         Height          =   492
+         Height          =   500
          HelpTag         =   ""
          Hierarchical    =   True
          Index           =   -2147483648
          InitialParent   =   "ResultTabPanel"
          InitialValue    =   "Object	Count"
          Italic          =   False
-         Left            =   245
+         Left            =   230
          LockBottom      =   True
          LockedInPosition=   False
          LockLeft        =   True
@@ -261,12 +261,12 @@ Begin Window XojoInstrumentsDesktopGUI
          TextFont        =   "System"
          TextSize        =   10.0
          TextUnit        =   0
-         Top             =   68
+         Top             =   60
          Transparent     =   False
          Underline       =   False
          UseFocusRing    =   True
          Visible         =   True
-         Width           =   535
+         Width           =   550
          _ScrollOffset   =   0
          _ScrollWidth    =   -1
       End
@@ -281,7 +281,7 @@ Begin Window XojoInstrumentsDesktopGUI
          Index           =   -2147483648
          InitialParent   =   "ResultTabPanel"
          Italic          =   False
-         Left            =   245
+         Left            =   230
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -299,11 +299,11 @@ Begin Window XojoInstrumentsDesktopGUI
          TextFont        =   "System"
          TextSize        =   10.0
          TextUnit        =   0
-         Top             =   40
+         Top             =   30
          Transparent     =   True
          Underline       =   False
          Visible         =   True
-         Width           =   535
+         Width           =   550
       End
       Begin Listbox ComparisonList
          AutoDeactivate  =   True
@@ -323,14 +323,14 @@ Begin Window XojoInstrumentsDesktopGUI
          GridLinesVertical=   0
          HasHeading      =   True
          HeadingIndex    =   -1
-         Height          =   492
+         Height          =   500
          HelpTag         =   ""
          Hierarchical    =   True
          Index           =   -2147483648
          InitialParent   =   "ResultTabPanel"
          InitialValue    =   "Object	Count	+	-"
          Italic          =   False
-         Left            =   245
+         Left            =   230
          LockBottom      =   True
          LockedInPosition=   False
          LockLeft        =   True
@@ -348,12 +348,12 @@ Begin Window XojoInstrumentsDesktopGUI
          TextFont        =   "System"
          TextSize        =   10.0
          TextUnit        =   0
-         Top             =   68
+         Top             =   60
          Transparent     =   False
          Underline       =   False
          UseFocusRing    =   True
          Visible         =   True
-         Width           =   535
+         Width           =   550
          _ScrollOffset   =   0
          _ScrollWidth    =   -1
       End
@@ -370,7 +370,7 @@ Begin Window XojoInstrumentsDesktopGUI
          Index           =   -2147483648
          InitialParent   =   "ResultTabPanel"
          Italic          =   False
-         Left            =   249
+         Left            =   230
          LockBottom      =   True
          LockedInPosition=   False
          LockLeft        =   True
@@ -383,11 +383,11 @@ Begin Window XojoInstrumentsDesktopGUI
          TextFont        =   "System"
          TextSize        =   10.0
          TextUnit        =   0
-         Top             =   566
+         Top             =   565
          Transparent     =   False
          Underline       =   False
          Visible         =   True
-         Width           =   94
+         Width           =   90
       End
       Begin Label LabelGraph
          AutoDeactivate  =   True
@@ -400,7 +400,7 @@ Begin Window XojoInstrumentsDesktopGUI
          Index           =   -2147483648
          InitialParent   =   "ResultTabPanel"
          Italic          =   False
-         Left            =   245
+         Left            =   230
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -418,11 +418,11 @@ Begin Window XojoInstrumentsDesktopGUI
          TextFont        =   "System"
          TextSize        =   10.0
          TextUnit        =   0
-         Top             =   40
+         Top             =   30
          Transparent     =   True
          Underline       =   False
          Visible         =   True
-         Width           =   535
+         Width           =   550
       End
       Begin CheckBox GraphExcludeNodesWithoutEdgeCheck
          AutoDeactivate  =   True
@@ -436,7 +436,7 @@ Begin Window XojoInstrumentsDesktopGUI
          Index           =   -2147483648
          InitialParent   =   "ResultTabPanel"
          Italic          =   False
-         Left            =   245
+         Left            =   230
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -450,12 +450,12 @@ Begin Window XojoInstrumentsDesktopGUI
          TextFont        =   "System"
          TextSize        =   10.0
          TextUnit        =   0
-         Top             =   62
+         Top             =   60
          Transparent     =   False
          Underline       =   False
          Value           =   True
          Visible         =   True
-         Width           =   163
+         Width           =   170
       End
       Begin HTMLViewer GraphHTMLViewer
          AutoDeactivate  =   True
@@ -464,7 +464,7 @@ Begin Window XojoInstrumentsDesktopGUI
          HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "ResultTabPanel"
-         Left            =   245
+         Left            =   230
          LockBottom      =   True
          LockedInPosition=   False
          LockLeft        =   True
@@ -477,7 +477,7 @@ Begin Window XojoInstrumentsDesktopGUI
          TabStop         =   True
          Top             =   90
          Visible         =   True
-         Width           =   535
+         Width           =   550
       End
       Begin PushButton DoGraphRenderButton
          AutoDeactivate  =   True
@@ -492,7 +492,7 @@ Begin Window XojoInstrumentsDesktopGUI
          Index           =   -2147483648
          InitialParent   =   "ResultTabPanel"
          Italic          =   False
-         Left            =   690
+         Left            =   700
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   False
@@ -505,7 +505,7 @@ Begin Window XojoInstrumentsDesktopGUI
          TextFont        =   "System"
          TextSize        =   10.0
          TextUnit        =   0
-         Top             =   62
+         Top             =   60
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -524,7 +524,7 @@ Begin Window XojoInstrumentsDesktopGUI
          Index           =   -2147483648
          InitialParent   =   "ResultTabPanel"
          Italic          =   False
-         Left            =   249
+         Left            =   230
          LockBottom      =   True
          LockedInPosition=   False
          LockLeft        =   True
@@ -537,11 +537,11 @@ Begin Window XojoInstrumentsDesktopGUI
          TextFont        =   "System"
          TextSize        =   10.0
          TextUnit        =   0
-         Top             =   566
+         Top             =   565
          Transparent     =   False
          Underline       =   False
          Visible         =   True
-         Width           =   94
+         Width           =   90
       End
       Begin ComboBox GraphDotCommand
          AutoComplete    =   False
@@ -556,7 +556,7 @@ Begin Window XojoInstrumentsDesktopGUI
          InitialParent   =   "ResultTabPanel"
          InitialValue    =   ""
          Italic          =   False
-         Left            =   460
+         Left            =   490
          ListIndex       =   0
          LockBottom      =   False
          LockedInPosition=   False
@@ -570,12 +570,12 @@ Begin Window XojoInstrumentsDesktopGUI
          TextFont        =   "System"
          TextSize        =   10.0
          TextUnit        =   0
-         Top             =   62
+         Top             =   60
          Transparent     =   False
          Underline       =   False
          UseFocusRing    =   True
          Visible         =   True
-         Width           =   214
+         Width           =   200
       End
       Begin Label LabelBackref
          AutoDeactivate  =   True
@@ -588,7 +588,7 @@ Begin Window XojoInstrumentsDesktopGUI
          Index           =   -2147483648
          InitialParent   =   "ResultTabPanel"
          Italic          =   False
-         Left            =   245
+         Left            =   230
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -606,11 +606,11 @@ Begin Window XojoInstrumentsDesktopGUI
          TextFont        =   "System"
          TextSize        =   10.0
          TextUnit        =   0
-         Top             =   40
+         Top             =   30
          Transparent     =   True
          Underline       =   False
          Visible         =   True
-         Width           =   535
+         Width           =   550
       End
       Begin Label LabelBackrefObjectID
          AutoDeactivate  =   True
@@ -623,7 +623,7 @@ Begin Window XojoInstrumentsDesktopGUI
          Index           =   -2147483648
          InitialParent   =   "ResultTabPanel"
          Italic          =   False
-         Left            =   249
+         Left            =   230
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -641,11 +641,11 @@ Begin Window XojoInstrumentsDesktopGUI
          TextFont        =   "System"
          TextSize        =   10.0
          TextUnit        =   0
-         Top             =   62
+         Top             =   60
          Transparent     =   True
          Underline       =   False
          Visible         =   True
-         Width           =   61
+         Width           =   60
       End
       Begin TextField BackrefInput
          AcceptTabs      =   False
@@ -665,7 +665,7 @@ Begin Window XojoInstrumentsDesktopGUI
          Index           =   -2147483648
          InitialParent   =   "ResultTabPanel"
          Italic          =   False
-         Left            =   313
+         Left            =   288
          LimitText       =   0
          LockBottom      =   False
          LockedInPosition=   False
@@ -684,12 +684,12 @@ Begin Window XojoInstrumentsDesktopGUI
          TextFont        =   "System"
          TextSize        =   10.0
          TextUnit        =   0
-         Top             =   62
+         Top             =   60
          Transparent     =   False
          Underline       =   False
          UseFocusRing    =   True
          Visible         =   True
-         Width           =   109
+         Width           =   100
       End
       Begin PushButton DoBackrefShowButton
          AutoDeactivate  =   True
@@ -704,7 +704,7 @@ Begin Window XojoInstrumentsDesktopGUI
          Index           =   -2147483648
          InitialParent   =   "ResultTabPanel"
          Italic          =   False
-         Left            =   435
+         Left            =   400
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -717,11 +717,11 @@ Begin Window XojoInstrumentsDesktopGUI
          TextFont        =   "System"
          TextSize        =   10.0
          TextUnit        =   0
-         Top             =   64
+         Top             =   60
          Transparent     =   False
          Underline       =   False
          Visible         =   True
-         Width           =   146
+         Width           =   140
       End
       Begin Listbox BackrefList
          AutoDeactivate  =   True
@@ -748,7 +748,7 @@ Begin Window XojoInstrumentsDesktopGUI
          InitialParent   =   "ResultTabPanel"
          InitialValue    =   "Object"
          Italic          =   False
-         Left            =   245
+         Left            =   230
          LockBottom      =   True
          LockedInPosition=   False
          LockLeft        =   True
@@ -771,11 +771,11 @@ Begin Window XojoInstrumentsDesktopGUI
          Underline       =   False
          UseFocusRing    =   True
          Visible         =   True
-         Width           =   535
+         Width           =   550
          _ScrollOffset   =   0
          _ScrollWidth    =   -1
       End
-      Begin Label Label1
+      Begin Label LabelAboutTitle
          AutoDeactivate  =   True
          Bold            =   True
          DataField       =   ""
@@ -786,7 +786,7 @@ Begin Window XojoInstrumentsDesktopGUI
          Index           =   -2147483648
          InitialParent   =   "ResultTabPanel"
          Italic          =   False
-         Left            =   255
+         Left            =   240
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -802,26 +802,26 @@ Begin Window XojoInstrumentsDesktopGUI
          TextAlign       =   0
          TextColor       =   &c00000000
          TextFont        =   "System"
-         TextSize        =   0.0
+         TextSize        =   18.0
          TextUnit        =   0
-         Top             =   48
+         Top             =   40
          Transparent     =   True
          Underline       =   False
          Visible         =   True
-         Width           =   154
+         Width           =   530
       End
-      Begin Label Label2
+      Begin Label LabelAboutCopyright
          AutoDeactivate  =   True
          Bold            =   False
          DataField       =   ""
          DataSource      =   ""
          Enabled         =   True
-         Height          =   43
+         Height          =   40
          HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "ResultTabPanel"
          Italic          =   False
-         Left            =   255
+         Left            =   240
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -839,13 +839,13 @@ Begin Window XojoInstrumentsDesktopGUI
          TextFont        =   "System"
          TextSize        =   10.0
          TextUnit        =   0
-         Top             =   93
+         Top             =   85
          Transparent     =   True
          Underline       =   False
          Visible         =   True
-         Width           =   342
+         Width           =   530
       End
-      Begin Label Label3
+      Begin Label LabelAboutVersion
          AutoDeactivate  =   True
          Bold            =   False
          DataField       =   ""
@@ -856,7 +856,7 @@ Begin Window XojoInstrumentsDesktopGUI
          Index           =   -2147483648
          InitialParent   =   "ResultTabPanel"
          Italic          =   False
-         Left            =   255
+         Left            =   240
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -868,30 +868,30 @@ Begin Window XojoInstrumentsDesktopGUI
          TabIndex        =   2
          TabPanelIndex   =   5
          TabStop         =   True
-         Text            =   "Version"
+         Text            =   "Version x.y.z"
          TextAlign       =   0
          TextColor       =   &c00000000
          TextFont        =   "System"
          TextSize        =   10.0
          TextUnit        =   0
-         Top             =   71
+         Top             =   65
          Transparent     =   True
          Underline       =   False
          Visible         =   True
-         Width           =   154
+         Width           =   530
       End
-      Begin Label Label4
+      Begin Label LabelAboutLink
          AutoDeactivate  =   True
          Bold            =   False
          DataField       =   ""
          DataSource      =   ""
          Enabled         =   True
-         Height          =   16
+         Height          =   15
          HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "ResultTabPanel"
          Italic          =   False
-         Left            =   255
+         Left            =   240
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -909,11 +909,11 @@ Begin Window XojoInstrumentsDesktopGUI
          TextFont        =   "System"
          TextSize        =   10.0
          TextUnit        =   0
-         Top             =   135
+         Top             =   125
          Transparent     =   True
          Underline       =   True
          Visible         =   True
-         Width           =   342
+         Width           =   530
       End
       Begin PushButton DoTrackBackrefSnapshotButton
          AutoDeactivate  =   True
@@ -928,7 +928,7 @@ Begin Window XojoInstrumentsDesktopGUI
          Index           =   -2147483648
          InitialParent   =   "ResultTabPanel"
          Italic          =   False
-         Left            =   355
+         Left            =   330
          LockBottom      =   True
          LockedInPosition=   False
          LockLeft        =   True
@@ -941,11 +941,11 @@ Begin Window XojoInstrumentsDesktopGUI
          TextFont        =   "System"
          TextSize        =   10.0
          TextUnit        =   0
-         Top             =   566
+         Top             =   565
          Transparent     =   False
          Underline       =   False
          Visible         =   True
-         Width           =   118
+         Width           =   120
       End
       Begin PushButton DoTrackBackrefCompareButton
          AutoDeactivate  =   True
@@ -960,7 +960,7 @@ Begin Window XojoInstrumentsDesktopGUI
          Index           =   -2147483648
          InitialParent   =   "ResultTabPanel"
          Italic          =   False
-         Left            =   355
+         Left            =   330
          LockBottom      =   True
          LockedInPosition=   False
          LockLeft        =   True
@@ -973,11 +973,11 @@ Begin Window XojoInstrumentsDesktopGUI
          TextFont        =   "System"
          TextSize        =   10.0
          TextUnit        =   0
-         Top             =   566
+         Top             =   565
          Transparent     =   False
          Underline       =   False
          Visible         =   True
-         Width           =   118
+         Width           =   120
       End
    End
    Begin Listbox SnapshotList
@@ -998,7 +998,7 @@ Begin Window XojoInstrumentsDesktopGUI
       GridLinesVertical=   0
       HasHeading      =   True
       HeadingIndex    =   -1
-      Height          =   453
+      Height          =   440
       HelpTag         =   ""
       Hierarchical    =   False
       Index           =   -2147483648
@@ -1028,7 +1028,7 @@ Begin Window XojoInstrumentsDesktopGUI
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
-      Width           =   213
+      Width           =   200
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
@@ -1062,7 +1062,7 @@ Begin Window XojoInstrumentsDesktopGUI
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   213
+      Width           =   200
    End
 End
 #tag EndWindow
@@ -1669,14 +1669,14 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events Label3
+#tag Events LabelAboutVersion
 	#tag Event
 		Sub Open()
 		  Me.Text = "Version " + XojoInstruments.Version
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events Label4
+#tag Events LabelAboutLink
 	#tag Event
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
 		  #Pragma Unused X
