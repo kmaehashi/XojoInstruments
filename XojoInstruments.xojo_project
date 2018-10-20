@@ -19,6 +19,7 @@ Class=XIArrayInteger;XojoInstruments/XojoInstruments/Framework/XIArrayInteger.xo
 Class=XIArray;XojoInstruments/XojoInstruments/Framework/XIArray.xojo_code;&h0000000033D3EFFF;&h0000000025A657FF;false
 Class=XIIterator;XojoInstruments/XojoInstruments/Framework/XIIterator.xojo_code;&h000000004AFAE7FF;&h0000000025A657FF;false
 Class=SnapshotDelta;XojoInstruments/XojoInstruments/SnapshotDelta.xojo_code;&h000000007FC35FFF;&h000000005D00D7FF;false
+Class=XINamedTemporaryFile;XojoInstruments/XojoInstruments/Framework/XINamedTemporaryFile.xojo_code;&h00000000793B87FF;&h0000000025A657FF;false
 AppMenuBar=MainMenuBar
 MajorVersion=#XojoInstruments.MajorVersion
 MinorVersion=#XojoInstruments.MinorVersion
