@@ -49,7 +49,7 @@ Begin Window XojoInstrumentsDesktopGUI
       TextFont        =   "System"
       TextSize        =   10.0
       TextUnit        =   0
-      Top             =   460
+      Top             =   490
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -80,7 +80,7 @@ Begin Window XojoInstrumentsDesktopGUI
          TextFont        =   "System"
          TextSize        =   10.0
          TextUnit        =   0
-         Top             =   530
+         Top             =   565
          Transparent     =   False
          Underline       =   False
          Value           =   False
@@ -113,7 +113,7 @@ Begin Window XojoInstrumentsDesktopGUI
          TextFont        =   "System"
          TextSize        =   10.0
          TextUnit        =   0
-         Top             =   470
+         Top             =   505
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -145,7 +145,7 @@ Begin Window XojoInstrumentsDesktopGUI
          TextFont        =   "System"
          TextSize        =   10.0
          TextUnit        =   0
-         Top             =   500
+         Top             =   535
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -156,7 +156,7 @@ Begin Window XojoInstrumentsDesktopGUI
       AutoDeactivate  =   True
       Bold            =   False
       Enabled         =   True
-      Height          =   590
+      Height          =   580
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -177,10 +177,10 @@ Begin Window XojoInstrumentsDesktopGUI
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   0
+      Top             =   10
       Transparent     =   False
       Underline       =   False
-      Value           =   0
+      Value           =   2
       Visible         =   True
       Width           =   570
       Begin Label LabelSnapshot
@@ -212,7 +212,7 @@ Begin Window XojoInstrumentsDesktopGUI
          TextFont        =   "System"
          TextSize        =   10.0
          TextUnit        =   0
-         Top             =   30
+         Top             =   40
          Transparent     =   True
          Underline       =   False
          Visible         =   True
@@ -236,7 +236,7 @@ Begin Window XojoInstrumentsDesktopGUI
          GridLinesVertical=   0
          HasHeading      =   True
          HeadingIndex    =   -1
-         Height          =   500
+         Height          =   490
          HelpTag         =   ""
          Hierarchical    =   True
          Index           =   -2147483648
@@ -261,7 +261,7 @@ Begin Window XojoInstrumentsDesktopGUI
          TextFont        =   "System"
          TextSize        =   10.0
          TextUnit        =   0
-         Top             =   60
+         Top             =   70
          Transparent     =   False
          Underline       =   False
          UseFocusRing    =   True
@@ -299,7 +299,7 @@ Begin Window XojoInstrumentsDesktopGUI
          TextFont        =   "System"
          TextSize        =   10.0
          TextUnit        =   0
-         Top             =   30
+         Top             =   40
          Transparent     =   True
          Underline       =   False
          Visible         =   True
@@ -323,7 +323,7 @@ Begin Window XojoInstrumentsDesktopGUI
          GridLinesVertical=   0
          HasHeading      =   True
          HeadingIndex    =   -1
-         Height          =   500
+         Height          =   490
          HelpTag         =   ""
          Hierarchical    =   True
          Index           =   -2147483648
@@ -348,7 +348,7 @@ Begin Window XojoInstrumentsDesktopGUI
          TextFont        =   "System"
          TextSize        =   10.0
          TextUnit        =   0
-         Top             =   60
+         Top             =   70
          Transparent     =   False
          Underline       =   False
          UseFocusRing    =   True
@@ -418,7 +418,7 @@ Begin Window XojoInstrumentsDesktopGUI
          TextFont        =   "System"
          TextSize        =   10.0
          TextUnit        =   0
-         Top             =   30
+         Top             =   40
          Transparent     =   True
          Underline       =   False
          Visible         =   True
@@ -450,7 +450,7 @@ Begin Window XojoInstrumentsDesktopGUI
          TextFont        =   "System"
          TextSize        =   10.0
          TextUnit        =   0
-         Top             =   60
+         Top             =   70
          Transparent     =   False
          Underline       =   False
          Value           =   True
@@ -460,7 +460,7 @@ Begin Window XojoInstrumentsDesktopGUI
       Begin HTMLViewer GraphHTMLViewer
          AutoDeactivate  =   True
          Enabled         =   True
-         Height          =   490
+         Height          =   480
          HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "ResultTabPanel"
@@ -475,7 +475,7 @@ Begin Window XojoInstrumentsDesktopGUI
          TabIndex        =   5
          TabPanelIndex   =   4
          TabStop         =   True
-         Top             =   90
+         Top             =   100
          Visible         =   True
          Width           =   550
       End
@@ -505,7 +505,7 @@ Begin Window XojoInstrumentsDesktopGUI
          TextFont        =   "System"
          TextSize        =   10.0
          TextUnit        =   0
-         Top             =   60
+         Top             =   70
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -570,7 +570,7 @@ Begin Window XojoInstrumentsDesktopGUI
          TextFont        =   "System"
          TextSize        =   10.0
          TextUnit        =   0
-         Top             =   60
+         Top             =   70
          Transparent     =   False
          Underline       =   False
          UseFocusRing    =   True
@@ -606,7 +606,7 @@ Begin Window XojoInstrumentsDesktopGUI
          TextFont        =   "System"
          TextSize        =   10.0
          TextUnit        =   0
-         Top             =   30
+         Top             =   40
          Transparent     =   True
          Underline       =   False
          Visible         =   True
@@ -641,7 +641,7 @@ Begin Window XojoInstrumentsDesktopGUI
          TextFont        =   "System"
          TextSize        =   10.0
          TextUnit        =   0
-         Top             =   60
+         Top             =   70
          Transparent     =   True
          Underline       =   False
          Visible         =   True
@@ -684,7 +684,7 @@ Begin Window XojoInstrumentsDesktopGUI
          TextFont        =   "System"
          TextSize        =   10.0
          TextUnit        =   0
-         Top             =   60
+         Top             =   70
          Transparent     =   False
          Underline       =   False
          UseFocusRing    =   True
@@ -717,7 +717,7 @@ Begin Window XojoInstrumentsDesktopGUI
          TextFont        =   "System"
          TextSize        =   10.0
          TextUnit        =   0
-         Top             =   60
+         Top             =   70
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -741,7 +741,7 @@ Begin Window XojoInstrumentsDesktopGUI
          GridLinesVertical=   0
          HasHeading      =   True
          HeadingIndex    =   -1
-         Height          =   490
+         Height          =   480
          HelpTag         =   ""
          Hierarchical    =   True
          Index           =   -2147483648
@@ -766,7 +766,7 @@ Begin Window XojoInstrumentsDesktopGUI
          TextFont        =   "System"
          TextSize        =   10.0
          TextUnit        =   0
-         Top             =   90
+         Top             =   100
          Transparent     =   False
          Underline       =   False
          UseFocusRing    =   True
@@ -804,7 +804,7 @@ Begin Window XojoInstrumentsDesktopGUI
          TextFont        =   "System"
          TextSize        =   18.0
          TextUnit        =   0
-         Top             =   40
+         Top             =   50
          Transparent     =   True
          Underline       =   False
          Visible         =   True
@@ -839,7 +839,7 @@ Begin Window XojoInstrumentsDesktopGUI
          TextFont        =   "System"
          TextSize        =   10.0
          TextUnit        =   0
-         Top             =   85
+         Top             =   95
          Transparent     =   True
          Underline       =   False
          Visible         =   True
@@ -874,7 +874,7 @@ Begin Window XojoInstrumentsDesktopGUI
          TextFont        =   "System"
          TextSize        =   10.0
          TextUnit        =   0
-         Top             =   65
+         Top             =   75
          Transparent     =   True
          Underline       =   False
          Visible         =   True
@@ -909,7 +909,7 @@ Begin Window XojoInstrumentsDesktopGUI
          TextFont        =   "System"
          TextSize        =   10.0
          TextUnit        =   0
-         Top             =   125
+         Top             =   135
          Transparent     =   True
          Underline       =   True
          Visible         =   True
@@ -1058,7 +1058,7 @@ Begin Window XojoInstrumentsDesktopGUI
       TextFont        =   "System"
       TextSize        =   10.0
       TextUnit        =   0
-      Top             =   570
+      Top             =   460
       Transparent     =   False
       Underline       =   False
       Visible         =   True
