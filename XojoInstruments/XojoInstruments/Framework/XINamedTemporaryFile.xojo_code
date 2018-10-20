@@ -9,10 +9,17 @@ Implements XIObject
 
 	#tag Method, Flags = &h21
 		Private Sub Destructor()
-		  Dim f As Xojo.IO.FolderItem = Me.GetFolderItem()
-		  If f.Exists() Then
-		    f.Delete()
-		  End If
+		  Try
+		    Dim f As Xojo.IO.FolderItem = Me.GetFolderItem()
+		    If f.Exists() Then
+		      f.Delete()
+		    End If
+		  Exception e As RuntimeException
+		    // Ignore exceptions are we can do nothing here.
+		    #if DebugBuild
+		      Break
+		    #endif
+		  End Try
 		End Sub
 	#tag EndMethod
 
