@@ -53,6 +53,9 @@ Implements XojoInstruments.Framework.XIObject
 		  Case IsA Picture
 		    Return Str(Picture(obj).Width) + " x " + Str(Picture(obj).Height)
 		    
+		  Case IsA Graphics
+		    Return Str(Graphics(obj).Width) + " x " + Str(Graphics(obj).Height)
+		    
 		  Case IsA Pair
 		    Dim p As Pair = Pair(obj)
 		    Dim leftType, rightType As Xojo.Introspection.TypeInfo
