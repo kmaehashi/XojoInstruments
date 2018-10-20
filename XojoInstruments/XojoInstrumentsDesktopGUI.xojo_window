@@ -1540,17 +1540,24 @@ End
 		  
 		  Dim content As String = sh.ReadAll()
 		  
-		  #If TargetWin32
+		  #if TargetWin32
+		    // HTMLViewer.LoadPage with Native (Internet Explorer) renderer leaks
+		    // FolderItem instance on Windows (see <feedback://showreport?report_id=52832>).
+		    // To workaround the problem, manually manage the temporary file.
+		    
 		    // To display SVG using Navive (Internet Explorer) renderer.
 		    content = "<html><meta http-equiv=""X-UA-Compatible"" content=""IE=edge""/>" + content + "</html>"
-		  #Endif
-		  
-		  mTempGraphHTMLFile = New XINamedTemporaryFile()
-		  tos = Xojo.IO.TextOutputStream.Create(mTempGraphHTMLFile.GetFolderItem(), Xojo.Core.TextEncoding.UTF8)
-		  tos.Write(content.ToText())
-		  tos.Close()
-		  
-		  GraphHTMLViewer.LoadURL(mTempGraphHTMLFile.GetFolderItem().URLPath)
+		    
+		    mTempGraphHTMLFile = New XINamedTemporaryFile()
+		    tos = Xojo.IO.TextOutputStream.Create(mTempGraphHTMLFile.GetFolderItem(), Xojo.Core.TextEncoding.UTF8)
+		    tos.Write(content.ToText())
+		    tos.Close()
+		    GraphHTMLViewer.LoadURL(mTempGraphHTMLFile.GetFolderItem().URLPath)
+		  #else
+		    // Note: Using HTMLViewer.LoadURL with temporary file cause the horizontal scorll
+		    // behave incorrectly on Mac.
+		    GraphHTMLViewer.LoadPage(content, Nil)
+		  #endif
 		End Sub
 	#tag EndEvent
 #tag EndEvents
