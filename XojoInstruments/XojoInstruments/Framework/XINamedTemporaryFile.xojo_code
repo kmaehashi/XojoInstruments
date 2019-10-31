@@ -15,7 +15,7 @@ Implements XIObject
 		      f.Delete()
 		    End If
 		  Exception e As RuntimeException
-		    // Ignore exceptions are we can do nothing here.
+		    // Ignore exceptions as we can do nothing here.
 		    #if DebugBuild
 		      Break
 		    #endif
