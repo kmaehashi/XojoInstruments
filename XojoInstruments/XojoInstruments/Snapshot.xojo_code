@@ -84,8 +84,7 @@ Implements XojoInstruments.Framework.XIObject
 		  // Collect all system objects created during the iteration
 		  // (e.g., introspection cache in Xojo framework); they should be
 		  // ignored when taking a next snapshot.
-		  Dim addedObjectRefIDs As XIArrayInteger
-		  Do
+		  While True
 		    Dim iter2 As Runtime.ObjectIterator = Runtime.IterateObjects()
 		    Dim secondPass As New XIArrayInteger()
 		    While iter2.MoveNext()
@@ -100,11 +99,12 @@ Implements XojoInstruments.Framework.XIObject
 		    secondPass.Sort()
 		    
 		    // Compute delta
-		    addedObjectRefIDs = ComputeDelta(mObjectRefIDs, secondPass).Added
+		    Dim addedObjectRefIDs As XIArrayInteger = ComputeDelta(mObjectRefIDs, secondPass).Added
 		    For Each id As Integer In addedObjectRefIDs
 		      SystemObjectsRefIDs.Value(id) = True
 		    Next
-		  Loop Until addedObjectRefIDs.Ubound() = -1
+		    If addedObjectRefIDs.Ubound() = -1 Then Exit
+		  Wend
 		  
 		  // Remove WeakRefs no longer in use.
 		  ObjectRef.GarbageCollect()
