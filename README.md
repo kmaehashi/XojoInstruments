@@ -44,11 +44,11 @@ You can also use `Backreference` tab to see back reference (list of objects refe
 ## Notes
 
 * As Xojo framework itself creates/caches some instances, you may notice unexpected "leaks" of instances.
-  Common ones are `EndOfLine` and `Xojo.Introspection.*`.
+  Common ones are `EndOfLine`, `DockItem` and `Xojo.Introspection.*`.
 * Reference graphs are built by traversing properties of each object.
   Please be aware that due to the limitation of introspection mechanism, Xojo Instruments cannot capture all references.
   Here is an example of references that cannot be captured:
-    * Delegates (e.g., reference created by `AddHandler`)
+    * Delegates (e.g., reference created by `AddHandler` / `AddressOf`)
     * Module properties
     * Shared class properties
     * Static variables
