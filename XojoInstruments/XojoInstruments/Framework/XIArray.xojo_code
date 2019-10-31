@@ -32,6 +32,18 @@ Implements XIObject,Xojo.Core.Iterable
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function IndexOf(targetValue As Auto, startingIndex As Integer = 0) As Integer
+		  For i As Integer = startingIndex To mBackend.Count - 1
+		    If mBackend.Value(i) = targetValue Then
+		      Return i
+		    End If
+		  Next
+		  
+		  Return -1
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function RawItem(index As Integer) As Auto
 		  Return mBackend.Value(index)
 		End Function

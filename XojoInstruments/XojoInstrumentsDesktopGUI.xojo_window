@@ -979,6 +979,38 @@ Begin Window XojoInstrumentsDesktopGUI
          Visible         =   True
          Width           =   120
       End
+      Begin PushButton PushButton1
+         AutoDeactivate  =   True
+         Bold            =   False
+         ButtonStyle     =   "0"
+         Cancel          =   False
+         Caption         =   "FindCircular"
+         Default         =   False
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "ResultTabPanel"
+         Italic          =   False
+         Left            =   585
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   5
+         TabPanelIndex   =   3
+         TabStop         =   True
+         TextFont        =   "System"
+         TextSize        =   0.0
+         TextUnit        =   0
+         Top             =   70
+         Transparent     =   False
+         Underline       =   False
+         Visible         =   True
+         Width           =   125
+      End
    End
    Begin Listbox SnapshotList
       AutoDeactivate  =   True
@@ -1264,6 +1296,29 @@ End
 		  Next
 		  
 		  Return result
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub FindCircular(snap As XojoInstruments.Snapshot)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function FindCircularNextHop(snap As XojoInstruments.Snapshot, currentId As Integer, nextId As Integer, trajectory As XIArrayInteger) As XIArrayInteger
+		  'void stronglyConnectedComponents(const Graph& g,
+		  'vector< vector<int> >& scc) {
+		  'const int n = g.size();
+		  'vector<int> num(n), low(n);
+		  'stack<int> S;
+		  'vector<bool> inS(n);
+		  'int time = 0;
+		  'REP(u, n) if (num[u] == 0)
+		  'visit(g, u, scc, S, inS, low, num, time);
+		  '}
+		  
+		  Dim 
 		End Function
 	#tag EndMethod
 
@@ -1726,6 +1781,22 @@ End
 		  BackrefInput.Text = Str(objId)
 		  DoBackrefShowButton.Push()
 		  ResultTabPanel.Value = 2
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events PushButton1
+	#tag Event
+		Sub Action()
+		  Dim snap As XojoInstruments.Snapshot = mSnapshot
+		  If snap = Nil Then
+		    MsgBox("Please select a snapshot.")
+		    Return
+		  ElseIf snap.ObjectRefGraph = Nil Then
+		    MsgBox("The snapshot does not contain reference graph.")
+		    Return
+		  End If
+		  
+		  FindCircular(snap)
 		End Sub
 	#tag EndEvent
 #tag EndEvents
