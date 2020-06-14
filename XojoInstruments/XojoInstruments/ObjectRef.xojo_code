@@ -80,6 +80,50 @@ Implements XojoInstruments.Framework.XIObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Shared Sub InspectInIDE(ID As Integer, obj As Object)
+		  If Not DebugBuild Or obj = Nil Then Return
+		  
+		  If Xojo.Introspection.GetType(obj).FullName = "Delegate" Then
+		    Inspect_Delegate_in_IDE(ID, obj)
+		  Else
+		    Inspect_Object_in_IDE(ID, obj)
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Shared Sub Inspect_Delegate_in_IDE(ID As Integer, obj As Object)
+		  //  **************************************************************************
+		  //
+		  //     `obj` in Variables is the Delegate(s) you have selected.
+		  //
+		  //     Click [ ▶︎ Resume ] to continue...
+		  //
+		  //  **************************************************************************
+		  
+		  #Pragma Unused ID
+		  #Pragma Unused obj
+		  Break
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Shared Sub Inspect_Object_in_IDE(ID As Integer, obj As Auto)
+		  //  **************************************************************************
+		  //
+		  //     `obj` in Variables is the object(s) you have selected.
+		  //
+		  //     Click [ ▶︎ Resume ] to continue...
+		  //
+		  //  **************************************************************************
+		  
+		  #Pragma Unused ID
+		  #Pragma Unused obj
+		  Break
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Shared Function ReferenceByID(id As Integer) As ObjectRef
 		  // Get ObjectRef of the given ID.
 		  
@@ -204,20 +248,27 @@ Implements XojoInstruments.Framework.XIObject
 	#tag ViewBehavior
 		#tag ViewProperty
 			Name="ClassName"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Hint"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="ID"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
@@ -225,6 +276,7 @@ Implements XojoInstruments.Framework.XIObject
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -232,18 +284,23 @@ Implements XojoInstruments.Framework.XIObject
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
@@ -251,6 +308,7 @@ Implements XojoInstruments.Framework.XIObject
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class
