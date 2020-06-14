@@ -1,6 +1,7 @@
 Type=Desktop
-RBProjectVersion=2018.02
+RBProjectVersion=2019.031
 MinIDEVersion=20070100
+OrigIDEVersion=00000000
 Class=App;App.xojo_code;&h0000000023DF1FFF;&h0000000000000000;false
 Folder=Example;Example;&h0000000060C16FFF;&h0000000000000000;false
 Window=Example;Example/Example.xojo_window;&h000000006A71D7FF;&h0000000060C16FFF;false
@@ -50,6 +51,7 @@ DebuggerCommandLine=
 UseGDIPlus=False
 UseBuildsFolder=True
 HiDPI=True
+DarkMode=True
 CopyRedistNextToWindowsEXE=False
 IsWebProject=False
 MacBuildArchitecture=1
