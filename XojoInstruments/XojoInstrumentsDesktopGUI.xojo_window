@@ -1204,17 +1204,6 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub DoInspectObjectInIDE(ID As Integer, obj As Object)
-		  Select Case Xojo.Introspection.GetType(obj).FullName
-		  Case "Delegate"
-		    Inspect_Delegate_in_IDE(ID, obj)
-		  Else
-		    Inspect_Object_in_IDE(ID, obj)
-		  End Select
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
 		Private Sub DoShowSnapshot(snap As XojoInstruments.Snapshot, excludeNodesWithoutEdge As Boolean)
 		  mSnapshot = snap
 		  
@@ -1304,38 +1293,6 @@ End
 		  
 		  Return d
 		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Sub Inspect_Delegate_in_IDE(ID As Integer, obj As Object)
-		  //  **************************************************************************
-		  //
-		  //     `obj` in Variables is the Delegate you have selected.
-		  //
-		  //     Click [ ▶︎ Resume ] to continue...
-		  //
-		  //  **************************************************************************
-		  
-		  #Pragma Unused ID
-		  #Pragma Unused obj
-		  Break
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Sub Inspect_Object_in_IDE(ID As Integer, obj As Auto)
-		  //  **************************************************************************
-		  //
-		  //     `obj` in Variables is the object(s) you have selected.
-		  //
-		  //     Click [ ▶︎ Resume ] to continue...
-		  //
-		  //  **************************************************************************
-		  
-		  #Pragma Unused ID
-		  #Pragma Unused obj
-		  Break
-		End Sub
 	#tag EndMethod
 
 
@@ -1468,7 +1425,7 @@ End
 		        viewObjects.Value(id) = XojoInstruments.ObjectRef.ReferenceByID(id).Value()
 		      Next
 		      
-		      DoInspectObjectInIDE(-1, viewObjects)
+		      XojoInstruments.ObjectRef.InspectInIDE(-1, viewObjects)
 		      
 		    Else
 		      // Single object.
@@ -1476,7 +1433,7 @@ End
 		      Dim oref As XojoInstruments.ObjectRef = XojoInstruments.ObjectRef.ReferenceByID(objId)
 		      Dim obj As Object = oref.Value()
 		      If obj <> Nil Then
-		        DoInspectObjectInIDE(objId, obj)
+		        XojoInstruments.ObjectRef.InspectInIDE(objId, obj)
 		      Else
 		        MsgBox("The object has already been garbage collected.")
 		      End If
@@ -1509,7 +1466,7 @@ End
 		    Dim obj As Object = oref.Value()
 		    
 		    If obj <> Nil Then
-		      DoInspectObjectInIDE(s, obj)
+		      XojoInstruments.ObjectRef.InspectInIDE(s, obj)
 		    Else
 		      MsgBox("The object has already been garbage collected.")
 		    End If
@@ -1581,7 +1538,7 @@ End
 		        viewObjects.Value(id) = XojoInstruments.ObjectRef.ReferenceByID(id).Value()
 		      Next
 		      
-		      DoInspectObjectInIDE(-1, viewObjects)
+		      XojoInstruments.ObjectRef.InspectInIDE(-1, viewObjects)
 		    Else
 		      // Single object.
 		      
@@ -1589,7 +1546,7 @@ End
 		      Dim oref As XojoInstruments.ObjectRef = XojoInstruments.ObjectRef.ReferenceByID(objId)
 		      Dim obj As Object = oref.Value()
 		      If obj <> Nil Then
-		        DoInspectObjectInIDE(objId, obj)
+		        XojoInstruments.ObjectRef.InspectInIDE(objId, obj)
 		      Else
 		        MsgBox("The object has already been garbage collected.")
 		      End If
