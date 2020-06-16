@@ -3,6 +3,8 @@ Protected Class InstrumentsSession
 Implements XojoInstruments.Framework.XIObject
 	#tag Method, Flags = &h0
 		Function Capture(createGraph As Boolean) As Snapshot
+		  #Pragma Unused createGraph
+		  
 		  Raise New RuntimeException()  // subclass must override
 		End Function
 	#tag EndMethod
@@ -14,25 +16,41 @@ Implements XojoInstruments.Framework.XIObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub InspectClass(className As String)
+		  #Pragma Unused className
+		  
+		  Raise New RuntimeException()  // subclass must override
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function InspectObject(id As Integer) As Boolean
+		  #Pragma Unused id
+		  
 		  Raise New RuntimeException()  // subclass must override
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function ObjectRefByID(id As Integer) As ObjectRef
+		  #Pragma Unused id
+		  
 		  Raise New RuntimeException()  // subclass must override
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function ObjectRefFor(obj As Object) As ObjectRef
+		  #Pragma Unused obj
+		  
 		  Raise New RuntimeException()  // subclass must override
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub RegisterSystemObject(obj As Object)
+		  #Pragma Unused obj
+		  
 		  Raise New RuntimeException()  // subclass must override
 		End Sub
 	#tag EndMethod
