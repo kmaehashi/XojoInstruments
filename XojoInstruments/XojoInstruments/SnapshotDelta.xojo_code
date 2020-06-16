@@ -3,51 +3,24 @@ Protected Class SnapshotDelta
 Implements XojoInstruments.Framework.XIObject
 	#tag Method, Flags = &h0
 		Sub Constructor(added As XIArrayInteger, removed As XIArrayInteger, unchanged As XIArrayInteger)
-		  mAdded = added
-		  mRemoved = removed
-		  mUnchanged = unchanged
+		  Me.Added = added
+		  Me.Removed = removed
+		  Me.Unchanged = unchanged
 		End Sub
 	#tag EndMethod
 
 
-	#tag ComputedProperty, Flags = &h0
-		#tag Getter
-			Get
-			  return mAdded
-			End Get
-		#tag EndGetter
+	#tag Property, Flags = &h0
 		Added As XIArrayInteger
-	#tag EndComputedProperty
-
-	#tag Property, Flags = &h21
-		Private mAdded As XIArrayInteger
 	#tag EndProperty
 
-	#tag Property, Flags = &h21
-		Private mRemoved As XIArrayInteger
-	#tag EndProperty
-
-	#tag Property, Flags = &h21
-		Private mUnchanged As XIArrayInteger
-	#tag EndProperty
-
-	#tag ComputedProperty, Flags = &h0
-		#tag Getter
-			Get
-			  return mRemoved
-			End Get
-		#tag EndGetter
+	#tag Property, Flags = &h0
 		Removed As XIArrayInteger
-	#tag EndComputedProperty
+	#tag EndProperty
 
-	#tag ComputedProperty, Flags = &h0
-		#tag Getter
-			Get
-			  return mUnchanged
-			End Get
-		#tag EndGetter
+	#tag Property, Flags = &h0
 		Unchanged As XIArrayInteger
-	#tag EndComputedProperty
+	#tag EndProperty
 
 
 	#tag ViewBehavior
@@ -57,6 +30,7 @@ Implements XojoInstruments.Framework.XIObject
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -64,18 +38,23 @@ Implements XojoInstruments.Framework.XIObject
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
@@ -83,6 +62,7 @@ Implements XojoInstruments.Framework.XIObject
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

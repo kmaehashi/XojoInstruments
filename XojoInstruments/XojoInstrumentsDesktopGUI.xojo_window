@@ -9,7 +9,7 @@ Begin Window XojoInstrumentsDesktopGUI
    FullScreenButton=   False
    HasBackColor    =   False
    Height          =   600
-   ImplicitInstance=   True
+   ImplicitInstance=   False
    LiveResize      =   "True"
    MacProcID       =   0
    MaxHeight       =   32000
@@ -1071,22 +1071,31 @@ End
 	#tag Event
 		Sub Open()
 		  // Hide objects in the window from snapshot.
-		  XojoInstruments.Snapshot.RegisterSystemObject(Me)
+		  mTargetSession.RegisterSystemObject(Me)
 		  For i As Integer = Me.ControlCount - 1 DownTo 0
-		    XojoInstruments.Snapshot.RegisterSystemObject(Me.Control(i))
+		    mTargetSession.RegisterSystemObject(Me.Control(i))
 		  Next
 		End Sub
 	#tag EndEvent
 
 
+	#tag Method, Flags = &h0
+		Sub Constructor(sess As XojoInstruments.InstrumentsSession)
+		  Me.mTargetSession = sess
+		  
+		  // Calling the overridden superclass constructor.
+		  Super.Constructor()
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h21
 		Private Function DoCapture(createGraph As Boolean) As XojoInstruments.Snapshot
-		  Dim snap As New XojoInstruments.Snapshot(createGraph)
+		  Dim snap As XojoInstruments.Snapshot = mTargetSession.Capture(createGraph)
 		  
 		  SnapshotList.AddRow( _
 		  Str(snap.ID), _
 		  Xojo.Core.Date.Now().ToText(), _
-		  Str(snap.Count()))
+		  Str(snap.ObjectRefIDs.Count()))
 		  SnapshotList.RowTag(SnapshotList.LastIndex) = snap
 		  SnapshotList.ListIndex = SnapshotList.LastIndex
 		  
@@ -1172,7 +1181,7 @@ End
 		  
 		  For Each id As Integer In snap.ObjectRefIDs
 		    Dim oref As XojoInstruments.ObjectRef = _
-		    XojoInstruments.ObjectRef.ReferenceByID(id)
+		    mTargetSession.ObjectRefByID(id)
 		    If Not excludeNodesWithoutEdge Or seen.HasKey(id) Then
 		      If renderHints Then
 		        // TODO html escape needed
@@ -1277,11 +1286,11 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Function GroupByClassName(ObjectRefIDs As XojoInstruments.Framework.XIArrayInteger) As XIDictionary
+		Private Function GroupByClassName(orefIDs As XojoInstruments.Framework.XIArrayInteger) As XIDictionary
 		  Dim d As New XIDictionary()
 		  
-		  For Each id As Integer In ObjectRefIDs
-		    Dim className As String = XojoInstruments.ObjectRef.ReferenceByID(id).ClassName
+		  For Each id As Integer In orefIDs
+		    Dim className As String = mTargetSession.ObjectRefByID(id).ClassName
 		    Dim idListForClass As New XIArrayInteger()
 		    If d.HasKey(className) Then
 		      idListForClass = d.Value(className)
@@ -1306,6 +1315,10 @@ End
 
 	#tag Property, Flags = &h21
 		Private mSnapshotDelta As XojoInstruments.SnapshotDelta
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private mTargetSession As XojoInstruments.InstrumentsSession
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -1354,7 +1367,7 @@ End
 		Sub ExpandRow(row As Integer)
 		  Dim ids As XojoInstruments.Framework.XIArrayInteger = Me.RowTag(row)
 		  For Each id As Integer In ids
-		    Dim oref As XojoInstruments.ObjectRef = XojoInstruments.ObjectRef.ReferenceByID(id)
+		    Dim oref As XojoInstruments.ObjectRef = mTargetSession.ObjectRefByID(id)
 		    Me.AddRow(Str(id) + If(oref.Hint <> "", " − " + oref.Hint, ""))
 		    Me.RowTag(Me.LastIndex) = id
 		  Next
@@ -1372,19 +1385,19 @@ End
 		  unchanged = d.Value(2)
 		  
 		  For Each id As Integer In added
-		    Dim oref As XojoInstruments.ObjectRef = XojoInstruments.ObjectRef.ReferenceByID(id)
+		    Dim oref As XojoInstruments.ObjectRef = mTargetSession.ObjectRefByID(id)
 		    Me.AddRow(Str(id) + If(oref.Hint <> "", " − " + oref.Hint, ""), "", "✓", "")
 		    Me.RowTag(Me.LastIndex) = id
 		  Next
 		  
 		  For Each id As Integer In removed
-		    Dim oref As XojoInstruments.ObjectRef = XojoInstruments.ObjectRef.ReferenceByID(id)
+		    Dim oref As XojoInstruments.ObjectRef = mTargetSession.ObjectRefByID(id)
 		    Me.AddRow(Str(id) + If(oref.Hint <> "", " − " + oref.Hint, ""), "", "", "✓")
 		    Me.RowTag(Me.LastIndex) = id
 		  Next
 		  
 		  For Each id As Integer In unchanged
-		    Dim oref As XojoInstruments.ObjectRef = XojoInstruments.ObjectRef.ReferenceByID(id)
+		    Dim oref As XojoInstruments.ObjectRef = mTargetSession.ObjectRefByID(id)
 		    Me.AddRow(Str(id) + If(oref.Hint <> "", " − " + oref.Hint, ""), "", "", "")
 		    Me.RowTag(Me.LastIndex) = id
 		  Next
@@ -1399,48 +1412,31 @@ End
 #tag Events DoInspectCompareButton
 	#tag Event
 		Sub Action()
-		  #if DebugBuild
-		    If _
-		      ComparisonList.ListIndex < 0 Or _
-		      ComparisonList.ListCount <= ComparisonList.ListIndex Then
-		      MsgBox("Please select an object ID to inspect.")
-		      Return 
-		    End If
+		  Dim theList As ListBox = ComparisonList
+		  
+		  If _
+		    theList.ListIndex < 0 Or _
+		    theList.ListCount <= theList.ListIndex Then
+		    MsgBox("Please select an object ID to inspect.")
+		    Return
+		  End If
+		  
+		  Try
 		    
-		    If ComparisonList.RowIsFolder(ComparisonList.ListIndex) Then
+		    If theList.RowIsFolder(theList.ListIndex) Then
 		      // All objects for the class.
-		      Dim d As XojoInstruments.Framework.XIDictionary = ComparisonList.RowTag(ComparisonList.ListIndex)
-		      Dim added, unchanged As XojoInstruments.Framework.XIArrayInteger
-		      
-		      added = d.Value(0)
-		      unchanged = d.Value(2)
-		      
-		      Dim viewObjects As New XojoInstruments.Framework.XIDictionary()
-		      
-		      For Each id As Integer In added
-		        viewObjects.Value(id) = XojoInstruments.ObjectRef.ReferenceByID(id).Value()
-		      Next
-		      
-		      For Each id As Integer In unchanged
-		        viewObjects.Value(id) = XojoInstruments.ObjectRef.ReferenceByID(id).Value()
-		      Next
-		      
-		      XojoInstruments.ObjectRef.InspectInIDE(-1, viewObjects)
-		      
+		      mTargetSession.InspectClass(theList.Cell(theList.ListIndex, 0))
 		    Else
 		      // Single object.
-		      Dim objId As Integer = ComparisonList.RowTag(ComparisonList.ListIndex)
-		      Dim oref As XojoInstruments.ObjectRef = XojoInstruments.ObjectRef.ReferenceByID(objId)
-		      Dim obj As Object = oref.Value()
-		      If obj <> Nil Then
-		        XojoInstruments.ObjectRef.InspectInIDE(objId, obj)
-		      Else
+		      Dim objId As Integer = theList.RowTag(theList.ListIndex)
+		      If Not mTargetSession.InspectObject(objId) Then
 		        MsgBox("The object has already been garbage collected.")
 		      End If
 		    End If
-		  #else
-		    MsgBox("Sorry, this feature is only available in Debug Run.")
-		  #endif
+		    
+		  Catch e As UnsupportedOperationException
+		    MsgBox("The app is not running in Debug Run mode.")
+		  End Try
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -1461,15 +1457,15 @@ End
 		  If URL.InStr("xojo-instruments") <> 0 Then
 		    Dim s2 As String = URL.Mid(URL.InStr("object=") + 7)
 		    
-		    Dim s As Integer = Val(s2)
-		    Dim oref As XojoInstruments.ObjectRef = XojoInstruments.ObjectRef.ReferenceByID(s)
-		    Dim obj As Object = oref.Value()
+		    Dim objId As Integer = Val(s2)
 		    
-		    If obj <> Nil Then
-		      XojoInstruments.ObjectRef.InspectInIDE(s, obj)
-		    Else
-		      MsgBox("The object has already been garbage collected.")
-		    End If
+		    Try
+		      If Not mTargetSession.InspectObject(objId) Then
+		        MsgBox("The object has already been garbage collected.")
+		      End If
+		    Catch e As UnsupportedOperationException
+		      MsgBox("The app is not running in Debug Run mode.")
+		    End Try
 		    
 		    Return True
 		  End If
@@ -1521,39 +1517,31 @@ End
 #tag Events DoInspectSnapshotButton
 	#tag Event
 		Sub Action()
-		  #if DebugBuild
-		    If _
-		      SnapshotObjectList.ListIndex < 0 Or _
-		      SnapshotObjectList.ListCount <= SnapshotObjectList.ListIndex Then
-		      MsgBox("Please select an object ID to inspect.")
-		      Return 
-		    End If
+		  Dim theList As ListBox = SnapshotObjectList
+		  
+		  If _
+		    theList.ListIndex < 0 Or _
+		    theList.ListCount <= theList.ListIndex Then
+		    MsgBox("Please select an object ID to inspect.")
+		    Return
+		  End If
+		  
+		  Try
 		    
-		    If SnapshotObjectList.RowIsFolder(SnapshotObjectList.ListIndex) Then
+		    If theList.RowIsFolder(theList.ListIndex) Then
 		      // All objects for the class.
-		      Dim objectIDs As XojoInstruments.Framework.XIArrayInteger = SnapshotObjectList.RowTag(SnapshotObjectList.ListIndex)
-		      Dim viewObjects As New XojoInstruments.Framework.XIDictionary()
-		      
-		      For Each id As Integer In objectIDs
-		        viewObjects.Value(id) = XojoInstruments.ObjectRef.ReferenceByID(id).Value()
-		      Next
-		      
-		      XojoInstruments.ObjectRef.InspectInIDE(-1, viewObjects)
+		      mTargetSession.InspectClass(theList.Cell(theList.ListIndex, 0))
 		    Else
 		      // Single object.
-		      
-		      Dim objId As Integer = SnapshotObjectList.RowTag(SnapshotObjectList.ListIndex)
-		      Dim oref As XojoInstruments.ObjectRef = XojoInstruments.ObjectRef.ReferenceByID(objId)
-		      Dim obj As Object = oref.Value()
-		      If obj <> Nil Then
-		        XojoInstruments.ObjectRef.InspectInIDE(objId, obj)
-		      Else
+		      Dim objId As Integer = theList.RowTag(theList.ListIndex)
+		      If Not mTargetSession.InspectObject(objId) Then
 		        MsgBox("The object has already been garbage collected.")
 		      End If
 		    End If
-		  #else
-		    MsgBox("Sorry, this feature is only available in Debug Run.")
-		  #endif
+		    
+		  Catch e As UnsupportedOperationException
+		    MsgBox("The app is not running in Debug Run mode.")
+		  End Try
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -1587,7 +1575,7 @@ End
 		  End If
 		  
 		  Dim objID As Integer = Val(BackrefInput.Text)
-		  Dim objRef As XojoInstruments.ObjectRef = XojoInstruments.ObjectRef.ReferenceByID(objID)
+		  Dim objRef As XojoInstruments.ObjectRef = mTargetSession.ObjectRefByID(objID)
 		  
 		  If objRef = Nil Then
 		    MsgBox("No such object.")
@@ -1616,7 +1604,7 @@ End
 		  For Each p As Pair In backrefs
 		    Dim refID As Integer = p.Left
 		    Dim refKey As String = p.Right
-		    Dim oref As XojoInstruments.ObjectRef = XojoInstruments.ObjectRef.ReferenceByID(refID)
+		    Dim oref As XojoInstruments.ObjectRef = mTargetSession.ObjectRefByID(refID)
 		    
 		    Me.AddFolder( _
 		    Str(refID) + " − " + _

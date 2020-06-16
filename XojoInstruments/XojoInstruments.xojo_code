@@ -2,23 +2,36 @@
 Protected Module XojoInstruments
 	#tag Method, Flags = &h1
 		Protected Sub Start()
+		  StartGUI()
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Protected Sub StartGUI()
 		  #if TargetDesktop
 		    Static desktopGUI As XojoInstrumentsDesktopGUI
 		    
 		    If desktopGUI = Nil Then
-		      // Take a snapshot to register Introspection-related things to system object list.
-		      Dim snap As New Snapshot(True)
-		      #Pragma Unused snap
+		      If mLocalSession = Nil Then
+		        mLocalSession = New InstrumentsLocalSession()
+		      End If
 		      
 		      // Create a window.
-		      desktopGUI = New XojoInstrumentsDesktopGUI()
+		      desktopGUI = New XojoInstrumentsDesktopGUI(mLocalSession)
 		    End If
 		    
 		    desktopGUI.Show()
+		  #else
+		    // Local mode is only supported for Desktop apps.
+		    Raise New PlatformNotSupportedException()
 		  #endif
 		End Sub
 	#tag EndMethod
 
+
+	#tag Property, Flags = &h21
+		Private mLocalSession As InstrumentsLocalSession
+	#tag EndProperty
 
 	#tag ComputedProperty, Flags = &h1
 		#tag Getter
