@@ -283,6 +283,29 @@ Implements XojoInstruments.Framework.XIObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub InspectClass(className As String)
+		  // Raises UnsupportedOperationException when not in Debug Run.
+		  
+		  #if Not DebugBuild
+		    Raise New UnsupportedOperationException()
+		  #endif
+		  
+		  Dim idToOref As XIDictionary = Me.mObjectRefMap.Lookup(className, Nil)
+		  If idToOref = Nil Then
+		    Break  // Please report this issue to the XojoInstruments developer.
+		    Return
+		  End If
+		  
+		  Dim idToObject As New XIDictionary()
+		  For Each idAndOref As Xojo.Core.DictionaryEntry In idToOref
+		    idToObject.Value(idAndOref.Key) = ObjectRef(idAndOref.Value).Value()
+		  Next
+		  
+		  Inspect_Objects_in_IDE(className, idToObject)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function InspectObject(id As Integer) As Boolean
 		  // Returns True when successfully inspected (i.e., object is still alive).
 		  // Returns False if the object has already been garbage collected.
