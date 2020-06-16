@@ -1412,53 +1412,31 @@ End
 #tag Events DoInspectCompareButton
 	#tag Event
 		Sub Action()
-		  #if DebugBuild
-		    If _
-		      ComparisonList.ListIndex < 0 Or _
-		      ComparisonList.ListCount <= ComparisonList.ListIndex Then
-		      MsgBox("Please select an object ID to inspect.")
-		      Return 
-		    End If
+		  Dim theList As ListBox = ComparisonList
+		  
+		  If _
+		    theList.ListIndex < 0 Or _
+		    theList.ListCount <= theList.ListIndex Then
+		    MsgBox("Please select an object ID to inspect.")
+		    Return
+		  End If
+		  
+		  Try
 		    
-		    // TODO: recover bulk inspect feature
-		    'If ComparisonList.RowIsFolder(ComparisonList.ListIndex) Then
-		    '// All objects for the class.
-		    'Dim d As XojoInstruments.Framework.XIDictionary = ComparisonList.RowTag(ComparisonList.ListIndex)
-		    'Dim added, unchanged As XojoInstruments.Framework.XIArrayInteger
-		    '
-		    'added = d.Value(0)
-		    'unchanged = d.Value(2)
-		    '
-		    'Dim viewObjects As New XojoInstruments.Framework.XIDictionary()
-		    '
-		    'For Each id As Integer In added
-		    'viewObjects.Value(id) = mTargetSession.ObjectRefByID(id).Value()
-		    'Next
-		    '
-		    'For Each id As Integer In unchanged
-		    'viewObjects.Value(id) = mTargetSession.ObjectRefByID(id).Value()
-		    'Next
-		    '
-		    'XojoInstruments.ObjectRef.InspectObject(-1, viewObjects)
-		    '
-		    'Else
-		    
-		    // Single object.
-		    Dim objId As Integer = ComparisonList.RowTag(ComparisonList.ListIndex)
-		    
-		    Try
+		    If theList.RowIsFolder(theList.ListIndex) Then
+		      // All objects for the class.
+		      mTargetSession.InspectClass(theList.Cell(theList.ListIndex, 0))
+		    Else
+		      // Single object.
+		      Dim objId As Integer = theList.RowTag(theList.ListIndex)
 		      If Not mTargetSession.InspectObject(objId) Then
 		        MsgBox("The object has already been garbage collected.")
 		      End If
-		    Catch e As UnsupportedOperationException
-		      MsgBox("The app is not running in Debug Run mode.")
-		    End Try
+		    End If
 		    
-		    'End If
-		    
-		  #else
-		    MsgBox("Sorry, this feature is only available in Debug Run.")
-		  #endif
+		  Catch e As UnsupportedOperationException
+		    MsgBox("The app is not running in Debug Run mode.")
+		  End Try
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -1539,43 +1517,31 @@ End
 #tag Events DoInspectSnapshotButton
 	#tag Event
 		Sub Action()
-		  #if DebugBuild
-		    If _
-		      SnapshotObjectList.ListIndex < 0 Or _
-		      SnapshotObjectList.ListCount <= SnapshotObjectList.ListIndex Then
-		      MsgBox("Please select an object ID to inspect.")
-		      Return 
-		    End If
+		  Dim theList As ListBox = SnapshotObjectList
+		  
+		  If _
+		    theList.ListIndex < 0 Or _
+		    theList.ListCount <= theList.ListIndex Then
+		    MsgBox("Please select an object ID to inspect.")
+		    Return
+		  End If
+		  
+		  Try
 		    
-		    // TODO
-		    'If SnapshotObjectList.RowIsFolder(SnapshotObjectList.ListIndex) Then
-		    '// All objects for the class.
-		    'Dim objectIDs As XojoInstruments.Framework.XIArrayInteger = SnapshotObjectList.RowTag(SnapshotObjectList.ListIndex)
-		    'Dim viewObjects As New XojoInstruments.Framework.XIDictionary()
-		    '
-		    'For Each id As Integer In objectIDs
-		    'viewObjects.Value(id) = XojoInstruments.ObjectRef.ReferenceByID(id).Value()
-		    'Next
-		    '
-		    'XojoInstruments.ObjectRef.InspectObject(-1, viewObjects)
-		    'Else
-		    
-		    // Single object.
-		    
-		    Dim objId As Integer = SnapshotObjectList.RowTag(SnapshotObjectList.ListIndex)
-		    Try
+		    If theList.RowIsFolder(theList.ListIndex) Then
+		      // All objects for the class.
+		      mTargetSession.InspectClass(theList.Cell(theList.ListIndex, 0))
+		    Else
+		      // Single object.
+		      Dim objId As Integer = theList.RowTag(theList.ListIndex)
 		      If Not mTargetSession.InspectObject(objId) Then
 		        MsgBox("The object has already been garbage collected.")
 		      End If
-		    Catch e As UnsupportedOperationException
-		      MsgBox("The app is not running in Debug Run mode.")
-		    End Try
+		    End If
 		    
-		    'End If
-		    
-		  #else
-		    MsgBox("Sorry, this feature is only available in Debug Run.")
-		  #endif
+		  Catch e As UnsupportedOperationException
+		    MsgBox("The app is not running in Debug Run mode.")
+		  End Try
 		End Sub
 	#tag EndEvent
 #tag EndEvents
