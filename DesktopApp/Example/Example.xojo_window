@@ -74,6 +74,7 @@ Begin Window Example
       SelectionType   =   0
       TabIndex        =   2
       TabPanelIndex   =   0
+      TabStop         =   "True"
       Top             =   52
       Transparent     =   False
       Visible         =   True
@@ -91,6 +92,7 @@ Begin Window Example
       HasBackColor    =   False
       Height          =   70
       HelpTag         =   ""
+      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   20
       LockBottom      =   False
