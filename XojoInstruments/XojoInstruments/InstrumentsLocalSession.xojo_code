@@ -318,7 +318,7 @@ Implements XojoInstruments.Framework.XIObject
 		  Dim oref As ObjectRef = ObjectRefByID(ID)
 		  If oref = Nil Then
 		    // No such ObjectRef. This should not happen.
-		    Break
+		    Break  // Please report this issue to the XojoInstruments developer.
 		    Return False
 		  End If
 		  
@@ -336,33 +336,50 @@ Implements XojoInstruments.Framework.XIObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Shared Sub Inspect_Delegate_in_IDE(ID As Integer, obj As Object)
-		  //  **************************************************************************
-		  //
-		  //     `obj` in Variables is the Delegate(s) you have selected.
-		  //
-		  //     Click [ ▶︎ Resume ] to continue...
-		  //
-		  //  **************************************************************************
+		Private Shared Sub Inspect_Delegate_in_IDE(ID As Integer, theDelegate As Object)
+		  //  **************************************************************************  //
+		  //                                                                              //
+		  //     `theDelegate` in Variables is the Delegate you have selected.            //
+		  //                                                                              //
+		  //     Click [ ▶︎ Resume ] to continue...                                        //
+		  //                                                                              //
+		  //  **************************************************************************  //
 		  
 		  #Pragma Unused ID
-		  #Pragma Unused obj
+		  #Pragma Unused theDelegate
 		  Break
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Shared Sub Inspect_Object_in_IDE(ID As Integer, obj As Auto)
-		  //  **************************************************************************
-		  //
-		  //     `obj` in Variables is the object(s) you have selected.
-		  //
-		  //     Click [ ▶︎ Resume ] to continue...
-		  //
-		  //  **************************************************************************
+		Private Shared Sub Inspect_Objects_in_IDE(className As String, ID_Object As XIDictionary)
+		  //  **************************************************************************  //
+		  //                                                                              //
+		  //     `ID_Object` in Variables is the mapping of an ID and an object.          //
+		  //     Garbage collected objects are shown as Nil.                              //
+		  //                                                                              //
+		  //     Click [ ▶︎ Resume ] to continue...                                        //
+		  //                                                                              //
+		  //  **************************************************************************  //
+		  
+		  #Pragma Unused className
+		  #Pragma Unused ID_Object
+		  Break
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Shared Sub Inspect_Object_in_IDE(ID As Integer, theObject As Auto)
+		  //  **************************************************************************  //
+		  //                                                                              //
+		  //     `theObject` in Variables is the object you have selected.                //
+		  //                                                                              //
+		  //     Click [ ▶︎ Resume ] to continue...                                        //
+		  //                                                                              //
+		  //  **************************************************************************  //
 		  
 		  #Pragma Unused ID
-		  #Pragma Unused obj
+		  #Pragma Unused theObject
 		  Break
 		End Sub
 	#tag EndMethod
