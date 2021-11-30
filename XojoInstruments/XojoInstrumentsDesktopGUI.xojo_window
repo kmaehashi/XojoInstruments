@@ -1347,7 +1347,9 @@ End
 #tag Events SnapshotObjectList
 	#tag Event
 		Sub DoubleClick()
-		  Me.Expanded(Me.ListIndex) = Not Me.Expanded(Me.ListIndex)
+		  If Me.ListIndex <> -1 Then
+		    Me.Expanded(Me.ListIndex) = Not Me.Expanded(Me.ListIndex)
+		  End If
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -1392,7 +1394,9 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub DoubleClick()
-		  Me.Expanded(Me.ListIndex) = Not Me.Expanded(Me.ListIndex)
+		  If Me.ListIndex <> -1 Then
+		    Me.Expanded(Me.ListIndex) = Not Me.Expanded(Me.ListIndex)
+		  End If
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -1629,7 +1633,9 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub DoubleClick()
-		  Me.Expanded(Me.ListIndex) = Not Me.Expanded(Me.ListIndex)
+		  If Me.ListIndex <> -1 Then
+		    Me.Expanded(Me.ListIndex) = Not Me.Expanded(Me.ListIndex)
+		  End If
 		End Sub
 	#tag EndEvent
 #tag EndEvents
