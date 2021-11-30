@@ -179,7 +179,7 @@ Begin Window XojoInstrumentsDesktopGUI
       Top             =   10
       Transparent     =   False
       Underline       =   False
-      Value           =   2
+      Value           =   0
       Visible         =   True
       Width           =   570
       Begin Label LabelSnapshot
@@ -781,7 +781,7 @@ Begin Window XojoInstrumentsDesktopGUI
          DataField       =   ""
          DataSource      =   ""
          Enabled         =   True
-         Height          =   20
+         Height          =   24
          HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "ResultTabPanel"
@@ -804,7 +804,7 @@ Begin Window XojoInstrumentsDesktopGUI
          TextFont        =   "System"
          TextSize        =   18.0
          TextUnit        =   0
-         Top             =   50
+         Top             =   52
          Transparent     =   True
          Underline       =   False
          Visible         =   True
@@ -816,7 +816,7 @@ Begin Window XojoInstrumentsDesktopGUI
          DataField       =   ""
          DataSource      =   ""
          Enabled         =   True
-         Height          =   40
+         Height          =   30
          HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "ResultTabPanel"
@@ -833,13 +833,13 @@ Begin Window XojoInstrumentsDesktopGUI
          TabIndex        =   1
          TabPanelIndex   =   5
          TabStop         =   True
-         Text            =   "Copyright ©︎ Kenichi Maehashi, 2017-2018.\nDistributed under MIT License."
+         Text            =   "Copyright ©︎ Kenichi Maehashi, 2017-2021.\nDistributed under MIT License."
          TextAlign       =   0
          TextColor       =   &c00000000
          TextFont        =   "System"
          TextSize        =   10.0
          TextUnit        =   0
-         Top             =   95
+         Top             =   96
          Transparent     =   True
          Underline       =   False
          Visible         =   True
@@ -874,7 +874,7 @@ Begin Window XojoInstrumentsDesktopGUI
          TextFont        =   "System"
          TextSize        =   10.0
          TextUnit        =   0
-         Top             =   75
+         Top             =   76
          Transparent     =   True
          Underline       =   False
          Visible         =   True
@@ -909,7 +909,7 @@ Begin Window XojoInstrumentsDesktopGUI
          TextFont        =   "System"
          TextSize        =   10.0
          TextUnit        =   0
-         Top             =   135
+         Top             =   126
          Transparent     =   True
          Underline       =   True
          Visible         =   True
