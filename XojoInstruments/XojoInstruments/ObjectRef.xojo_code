@@ -95,7 +95,7 @@ Implements XojoInstruments.Framework.XIObject
 		Private Shared Sub Inspect_Delegate_in_IDE(ID As Integer, obj As Object)
 		  //  **************************************************************************
 		  //
-		  //     `obj` in Variables is the Delegate(s) you have selected.
+		  //     `obj` in Variables is the Delegate you have selected.
 		  //
 		  //     Click [ ▶︎ Resume ] to continue...
 		  //
