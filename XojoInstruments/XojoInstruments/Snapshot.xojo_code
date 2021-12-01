@@ -123,6 +123,74 @@ Implements XojoInstruments.Framework.XIObject
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Function FindCircularReferences() As XIDictionary
+		  If mObjectRefGraph Is Nil Then
+		    Return Nil
+		  End If
+		  
+		  Dim inDegree As New XIDictionary()  // Maps from object ID (Integer) to number of incoming edges (i.e., refcount)
+		  For Each ent1 As Xojo.Core.DictionaryEntry In mObjectRefGraph
+		    // ent1.Key (Integer): object ID
+		    // ent1.Value (XIDictionary): Maps from edge description (String) to object ID (Integer)
+		    For Each ent2 As Xojo.Core.DictionaryEntry In XIDictionary(ent1.Value)
+		      // ent2.Key (String): edge description
+		      // ent2.Value (Integer): object ID
+		      inDegree.Value(ent2.Value) = If(inDegree.HasKey(ent2.Value), inDegree.Value(ent2.Value), 0) + 1
+		    Next
+		  Next
+		  
+		  Dim queue() As Integer
+		  For Each ent1 As Xojo.Core.DictionaryEntry In mObjectRefGraph
+		    If Not inDegree.HasKey(ent1.Key) Then
+		      // The node has no incoming edges.
+		      queue.Append(ent1.Key)
+		    End If
+		  Next
+		  
+		  While queue.Ubound() <> -1
+		    Dim currentNode As Integer = queue(0)
+		    queue.Remove(0)
+		    
+		    For Each ent2 As Xojo.Core.DictionaryEntry In XIDictionary(mObjectRefGraph.Value(currentNode))
+		      Dim destNode As Integer = ent2.Value
+		      Dim newDegree As Integer = inDegree.Value(destNode) - 1
+		      If newDegree = 0 Then
+		        inDegree.Remove(destNode)
+		        queue.Append(destNode)
+		      Else
+		        inDegree.Value(destNode) = newDegree
+		      End If
+		    Next
+		  Wend
+		  
+		  // Remove nodes without outgoing edges.
+		  While True
+		    Dim stabilized As Boolean = True
+		    
+		    For Each ent1 As Xojo.Core.DictionaryEntry In inDegree.EagerlyEvaluateIterable()
+		      Dim currentNode As Integer = ent1.Key
+		      Dim outgoingEdges As XIDictionary = mObjectRefGraph.Value(currentNode)
+		      Dim hasOutgoingEdges As Boolean = False
+		      For Each ent2 As Xojo.Core.DictionaryEntry In outgoingEdges
+		        If inDegree.HasKey(ent2.Value) Then
+		          hasOutgoingEdges = True
+		          Exit
+		        End If
+		      Next
+		      If Not hasOutgoingEdges Then
+		        inDegree.Remove(currentNode)
+		        stabilized = False
+		      End If
+		    Next
+		    
+		    If stabilized Then Exit
+		  Wend
+		  
+		  Return inDegree
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h21
 		Private Shared Function GetReferringObjectRefs(oref As ObjectRef) As XojoInstruments.Framework.XIDictionary
 		  // Finds all objects directly referenced by the specified oref, as possible as we can.
@@ -315,8 +383,11 @@ Implements XojoInstruments.Framework.XIObject
 	#tag ViewBehavior
 		#tag ViewProperty
 			Name="ID"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
@@ -324,6 +395,7 @@ Implements XojoInstruments.Framework.XIObject
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -331,18 +403,23 @@ Implements XojoInstruments.Framework.XIObject
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
@@ -350,6 +427,7 @@ Implements XojoInstruments.Framework.XIObject
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class
