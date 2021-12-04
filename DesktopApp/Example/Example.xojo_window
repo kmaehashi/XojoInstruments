@@ -188,8 +188,10 @@ End
 		    mLeaksDict2 = New Xojo.Core.Dictionary()
 		  End If
 		  
+		  Dim intermediate As New Xojo.Core.Dictionary()
+		  intermediate.Value("dict1") = mLeaksDict1
 		  mLeaksDict1.Value("circular") = mLeaksDict2
-		  mLeaksDict2.Value("circular") = mLeaksDict1
+		  mLeaksDict2.Value("circular") = intermediate
 		End Sub
 	#tag EndEvent
 #tag EndEvents
