@@ -2,7 +2,7 @@
 
 Xojo Instruments is a runtime tool to diagnose memory leaks and circular references in Xojo Desktop applications.
 
-![Example](https://github.com/kmaehashi/XojoInstruments/raw/master/docs/example_eddies_electronics.png)
+https://user-images.githubusercontent.com/939877/144716398-03936a9c-7906-4c75-ab9d-3a7dd54c9866.mov
 
 ## Quick Start
 
