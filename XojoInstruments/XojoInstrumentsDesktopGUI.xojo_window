@@ -1565,9 +1565,8 @@ End
 		      content = content.Replace("${XI_VIS_NETWORK_MIN_JS}", VIS_NETWORK_MIN_JS)
 		      content = content.Replace("${XI_DOT_STRING}", GenerateJSON(dotGraph))
 		    Else
-		      Dim tos As Xojo.IO.TextOutputStream
-		      
 		      Dim tempDotFile As New XINamedTemporaryFile()
+		      Dim tos As Xojo.IO.TextOutputStream
 		      tos = Xojo.IO.TextOutputStream.Create(tempDotFile.GetFolderItem(), Xojo.Core.TextEncoding.UTF8)
 		      tos.Write(dotGraph.ToText())
 		      tos.Close()
@@ -1592,9 +1591,12 @@ End
 		    content = "<html><meta http-equiv=""X-UA-Compatible"" content=""IE=edge""/>" + content + "</html>"
 		    
 		    mTempGraphHTMLFile = New XINamedTemporaryFile()
+		    
+		    Dim tos As Xojo.IO.TextOutputStream
 		    tos = Xojo.IO.TextOutputStream.Create(mTempGraphHTMLFile.GetFolderItem(), Xojo.Core.TextEncoding.UTF8)
 		    tos.Write(content.ToText())
 		    tos.Close()
+		    
 		    GraphHTMLViewer.LoadURL(mTempGraphHTMLFile.GetFolderItem().URLPath)
 		  #else
 		    // Note: Using HTMLViewer.LoadURL with temporary file cause the horizontal scorll
