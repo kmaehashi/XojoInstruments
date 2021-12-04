@@ -1250,14 +1250,14 @@ End
 		        " [label=<" + oref.ClassName + _
 		        If(oref.Hint <> "", "<BR /><FONT POINT-SIZE=""10"">" + oref.Hint + "</FONT>", "") + ">" + _
 		        ", URL=""xojo-instruments://object=" + Str(id) + """" + _
-		        ", color=" + If(circular.HasKey(id), "red", "black") + _
+		        If(circular.HasKey(id), ", color=""red""", "") + _
 		        "];")
 		      Else
 		        nodes.Append( _
 		        "  " + Str(id) + _
 		        " [label=""" + oref.ClassName + """" + _
 		        ", URL=""xojo-instruments://object=" + Str(id) + """" + _
-		        ", color=" + If(circular.HasKey(id), "red", "black") + _
+		        If(circular.HasKey(id), ", color=""red""", "") + _
 		        "];")
 		      End If
 		    End If
