@@ -12,6 +12,12 @@ Protected Module XojoInstruments
 		      
 		      // Create a window.
 		      desktopGUI = New XojoInstrumentsDesktopGUI()
+		      
+		      // Hide objects in the GUI from snapshot.
+		      XojoInstruments.Snapshot.RegisterSystemObject(desktopGUI)
+		      For i As Integer = desktopGUI.ControlCount - 1 DownTo 0
+		        XojoInstruments.Snapshot.RegisterSystemObject(desktopGUI.Control(i))
+		      Next
 		    End If
 		    
 		    desktopGUI.Show()
