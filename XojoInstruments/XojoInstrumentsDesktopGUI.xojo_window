@@ -1551,7 +1551,7 @@ End
 	#tag Event
 		Sub Action()
 		  If mSnapshot.ObjectRefGraph = Nil Then
-		    MsgBox("The snapshot does not contain reference graph.")
+		    MsgBox("The snapshot is captured without a reference graph.")
 		    Return
 		  End If
 		  
