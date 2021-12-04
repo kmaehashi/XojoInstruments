@@ -36,13 +36,13 @@ Protected Module XojoInstruments
 	#tag EndComputedProperty
 
 
-	#tag Constant, Name = BugVersion, Type = Double, Dynamic = False, Default = \"1", Scope = Protected
+	#tag Constant, Name = BugVersion, Type = Double, Dynamic = False, Default = \"0", Scope = Protected
 	#tag EndConstant
 
 	#tag Constant, Name = MajorVersion, Type = Double, Dynamic = False, Default = \"0", Scope = Protected
 	#tag EndConstant
 
-	#tag Constant, Name = MinorVersion, Type = Double, Dynamic = False, Default = \"2", Scope = Protected
+	#tag Constant, Name = MinorVersion, Type = Double, Dynamic = False, Default = \"3", Scope = Protected
 	#tag EndConstant
 
 
