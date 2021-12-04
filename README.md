@@ -9,11 +9,13 @@ Xojo Instruments is a runtime tool to diagnose memory leaks and circular referen
 1. Download the latest release from [Releases](https://github.com/kmaehashi/XojoInstruments/releases).
 1. Open Xojo Instruments project in Xojo IDE in `DesktopApp` folder.
 1. Copy `XojoInstruments` folder to your project using the IDE.
-1. Insert the following line to `App.Open` event handler of your project.
+1. Insert the following line to the top of `App.Open` (or `App.Opening`) event handler of your project.
 
 ```
 XojoInstruments.Start()
 ```
+
+**Hint:** If you are using Xojo 2021 Release 3 or later, you may need to change the Super of ``XojoInstrumentsDesktopGUI`` to ``DesktopWindow``.
 
 ## Basic Usage
 
@@ -34,10 +36,11 @@ You can possibly find circular reference by using the graph.
 
 1. Turn on `Build Reference Graph` and click `Capture`.
 1. Go to `Visualization` tab.
+1. (Optional) Turn on `Detect circular` to automatically highlight circular references in the graph.
 1. Click `Render`.
-   Note that `dot` command ([GraphViz](http://www.graphviz.org/download/); `brew install graphviz` to install on macOS) is required.
 
-While running your application under the IDE, you can view the object in IDE by clicking a object node in the graph.
+While running your application under the IDE, you can view the object in IDE by double-clicking a object node in the graph.
+You can choose either `vis.js` (bundled with Xojo Instruments, not supported on Windows) or `dot` command ([GraphViz](http://www.graphviz.org/download/) - needs to be installed separately) to render the graph.
 
 You can also use `Backreference` tab to see back reference (list of objects referring the target object).
 
