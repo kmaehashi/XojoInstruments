@@ -1215,15 +1215,13 @@ End
 		        "  " + Str(id) + _
 		        " [label=<" + oref.ClassName + _
 		        If(oref.Hint <> "", "<BR /><FONT POINT-SIZE=""10"">" + oref.Hint + "</FONT>", "") + ">" + _
-		        ", URL=""xojo-instruments://snapshot=" + Str(0) + "&amp;object=" + Str(id) + """" + _
-		        ", id=""object-" + Str(id) + """" + _
+		        ", URL=""xojo-instruments://object=" + Str(id) + """" + _
 		        "];")
 		      Else
 		        nodes.Append( _
 		        "  " + Str(id) + _
 		        " [label=""" + oref.ClassName + """" + _
-		        ", URL=""xojo-instruments://snapshot=" + Str(0) + "&amp;object=" + Str(id) + """" + _
-		        ", id=""object-" + Str(id) + """" + _
+		        ", URL=""xojo-instruments://object=" + Str(id) + """" + _
 		        "];")
 		      End If
 		    End If
