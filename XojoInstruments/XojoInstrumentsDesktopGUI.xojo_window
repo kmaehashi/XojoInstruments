@@ -1527,18 +1527,27 @@ End
 		    Return
 		  End If
 		  
-		  Dim tos As Xojo.IO.TextOutputStream
+		  Dim content As String
 		  
-		  Dim tempDotFile As New XINamedTemporaryFile()
-		  tos = Xojo.IO.TextOutputStream.Create(tempDotFile.GetFolderItem(), Xojo.Core.TextEncoding.UTF8)
-		  tos.Write(mGraphData.ToText())
-		  tos.Close()
+		  If GraphDotCommand.Text = "@vis.js" Then
+		    content = GRAPH_HTML_TEMPLATE
+		    content = content.Replace("${XI_VIS_NETWORK_MIN_JS}", VIS_NETWORK_MIN_JS)
+		    content = content.Replace("${XI_DOT_STRING}", GenerateJSON(mGraphData))
+		  Else
+		    Dim tos As Xojo.IO.TextOutputStream
+		    
+		    Dim tempDotFile As New XINamedTemporaryFile()
+		    tos = Xojo.IO.TextOutputStream.Create(tempDotFile.GetFolderItem(), Xojo.Core.TextEncoding.UTF8)
+		    tos.Write(mGraphData.ToText())
+		    tos.Close()
+		    
+		    Dim sh As New Shell()
+		    sh.Mode = 0
+		    sh.Execute(GraphDotCommand.Text, "-Tsvg " + tempDotFile.GetFolderItem().Path)
+		    
+		    content = sh.ReadAll()
+		  End If
 		  
-		  Dim sh As New Shell()
-		  sh.Mode = 0
-		  sh.Execute(GraphDotCommand.Text, "-Tsvg " + tempDotFile.GetFolderItem().Path)
-		  
-		  Dim content As String = sh.ReadAll()
 		  
 		  #if TargetWin32
 		    // HTMLViewer.LoadPage with Native (Internet Explorer) renderer leaks
