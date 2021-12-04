@@ -556,7 +556,7 @@ Begin Window XojoInstrumentsDesktopGUI
          InitialParent   =   "ResultTabPanel"
          InitialValue    =   ""
          Italic          =   False
-         Left            =   490
+         Left            =   533
          ListIndex       =   0
          LockBottom      =   False
          LockedInPosition=   False
@@ -575,7 +575,7 @@ Begin Window XojoInstrumentsDesktopGUI
          Underline       =   False
          UseFocusRing    =   True
          Visible         =   True
-         Width           =   200
+         Width           =   157
       End
       Begin Label LabelBackref
          AutoDeactivate  =   True
@@ -979,6 +979,39 @@ Begin Window XojoInstrumentsDesktopGUI
          Visible         =   True
          Width           =   120
       End
+      Begin CheckBox GraphDetectCircularCheck
+         AutoDeactivate  =   True
+         Bold            =   False
+         Caption         =   "Detect circular"
+         DataField       =   ""
+         DataSource      =   ""
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "ResultTabPanel"
+         Italic          =   False
+         Left            =   402
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   2
+         State           =   0
+         TabIndex        =   6
+         TabPanelIndex   =   4
+         TabStop         =   True
+         TextFont        =   "System"
+         TextSize        =   10.0
+         TextUnit        =   0
+         Top             =   70
+         Transparent     =   False
+         Underline       =   False
+         Value           =   False
+         Visible         =   True
+         Width           =   107
+      End
    End
    Begin Listbox SnapshotList
       AutoDeactivate  =   True
@@ -1152,9 +1185,10 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Function DoGenerateDot(snap As XojoInstruments.Snapshot,  excludeNodesWithoutEdge As Boolean, renderHints As Boolean) As String
+		Private Function DoGenerateDot(snap As XojoInstruments.Snapshot, excludeNodesWithoutEdge As Boolean, detectCircular As Boolean, renderHints As Boolean) As String
 		  Dim nodes(), edges() As String
 		  Dim seen As New XojoInstruments.Framework.XIDictionary()
+		  Dim circular As XIDictionary = If(detectCircular, snap.FindCircularReferences(), New XIDictionary())
 		  
 		  For Each id As Integer In snap.ObjectRefIDs
 		    Dim dict As Xojo.Core.Dictionary = snap.ObjectRefGraph.Value(id)
@@ -1182,6 +1216,7 @@ End
 		        If(oref.Hint <> "", "<BR /><FONT POINT-SIZE=""10"">" + oref.Hint + "</FONT>", "") + ">" + _
 		        ", URL=""xojo-instruments://snapshot=" + Str(0) + "&amp;object=" + Str(id) + """" + _
 		        ", id=""object-" + Str(id) + """" + _
+		        ", color=" + If(circular.HasKey(id), "red", "black") + _
 		        "];")
 		      Else
 		        nodes.Append( _
@@ -1189,6 +1224,7 @@ End
 		        " [label=""" + oref.ClassName + """" + _
 		        ", URL=""xojo-instruments://snapshot=" + Str(0) + "&amp;object=" + Str(id) + """" + _
 		        ", id=""object-" + Str(id) + """" + _
+		        ", color=" + If(circular.HasKey(id), "red", "black") + _
 		        "];")
 		      End If
 		    End If
@@ -1204,7 +1240,7 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub DoShowSnapshot(snap As XojoInstruments.Snapshot, excludeNodesWithoutEdge As Boolean)
+		Private Sub DoShowSnapshot(snap As XojoInstruments.Snapshot)
 		  mSnapshot = snap
 		  
 		  Dim summary As XIDictionary = GroupByClassName(snap.ObjectRefIDs)
@@ -1228,11 +1264,7 @@ End
 		  BackrefList.DeleteAllRows()
 		  
 		  // Visualization
-		  If snap.ObjectRefGraph <> Nil Then
-		    mGraphData = DoGenerateDot(snap, excludeNodesWithoutEdge, False)
-		  Else
-		    mGraphData = ""
-		  End If
+		  mCachedHTML = ""
 		  GraphHTMLViewer.LoadURL("about:blank")
 		End Sub
 	#tag EndMethod
@@ -1297,7 +1329,7 @@ End
 
 
 	#tag Property, Flags = &h21
-		Private mGraphData As String
+		Private mCachedHTML As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -1451,11 +1483,7 @@ End
 #tag Events GraphExcludeNodesWithoutEdgeCheck
 	#tag Event
 		Sub Action()
-		  If mSnapshot.ObjectRefGraph <> Nil Then
-		    mGraphData = DoGenerateDot(mSnapshot, Me.Value, False)
-		  Else
-		    mGraphData = ""
-		  End If
+		  mCachedHTML = ""
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -1483,31 +1511,33 @@ End
 #tag Events DoGraphRenderButton
 	#tag Event
 		Sub Action()
-		  If mGraphData = "" Then
+		  If mSnapshot.ObjectRefGraph = Nil Then
 		    MsgBox("The snapshot does not contain reference graph.")
 		    Return
+		    
+		  ElseIf mCachedHTML = "" Then
+		    Dim tos As Xojo.IO.TextOutputStream
+		    
+		    Dim tempDotFile As New XINamedTemporaryFile()
+		    tos = Xojo.IO.TextOutputStream.Create(tempDotFile.GetFolderItem(), Xojo.Core.TextEncoding.UTF8)
+		    tos.Write(DoGenerateDot(mSnapshot, GraphExcludeNodesWithoutEdgeCheck.Value, GraphDetectCircularCheck.Value, False).ToText())
+		    tos.Close()
+		    
+		    Dim sh As New Shell()
+		    sh.Mode = 0
+		    sh.Execute(GraphDotCommand.Text, "-Tsvg " + tempDotFile.GetFolderItem().Path)
+		    
+		    mCachedHTML = sh.ReadAll()
 		  End If
 		  
-		  Dim tos As Xojo.IO.TextOutputStream
-		  
-		  Dim tempDotFile As New XINamedTemporaryFile()
-		  tos = Xojo.IO.TextOutputStream.Create(tempDotFile.GetFolderItem(), Xojo.Core.TextEncoding.UTF8)
-		  tos.Write(mGraphData.ToText())
-		  tos.Close()
-		  
-		  Dim sh As New Shell()
-		  sh.Mode = 0
-		  sh.Execute(GraphDotCommand.Text, "-Tsvg " + tempDotFile.GetFolderItem().Path)
-		  
-		  Dim content As String = sh.ReadAll()
-		  
+		  // Render the content.
 		  #if TargetWin32
 		    // HTMLViewer.LoadPage with Native (Internet Explorer) renderer leaks
 		    // FolderItem instance on Windows (see <feedback://showreport?report_id=52832>).
 		    // To workaround the problem, manually manage the temporary file.
 		    
 		    // To display SVG using Navive (Internet Explorer) renderer.
-		    content = "<html><meta http-equiv=""X-UA-Compatible"" content=""IE=edge""/>" + content + "</html>"
+		    content = "<html><meta http-equiv=""X-UA-Compatible"" content=""IE=edge""/>" + mCachedHTML + "</html>"
 		    
 		    mTempGraphHTMLFile = New XINamedTemporaryFile()
 		    tos = Xojo.IO.TextOutputStream.Create(mTempGraphHTMLFile.GetFolderItem(), Xojo.Core.TextEncoding.UTF8)
@@ -1517,7 +1547,7 @@ End
 		  #else
 		    // Note: Using HTMLViewer.LoadURL with temporary file cause the horizontal scorll
 		    // behave incorrectly on Mac.
-		    GraphHTMLViewer.LoadPage(content, Nil)
+		    GraphHTMLViewer.LoadPage(mCachedHTML, Nil)
 		  #endif
 		End Sub
 	#tag EndEvent
@@ -1575,6 +1605,11 @@ End
 		  
 		  Me.AddRow("dot")
 		  Me.ListIndex = 0
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub TextChanged()
+		  mCachedHTML = ""
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -1692,12 +1727,19 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
+#tag Events GraphDetectCircularCheck
+	#tag Event
+		Sub Action()
+		  mCachedHTML = ""
+		End Sub
+	#tag EndEvent
+#tag EndEvents
 #tag Events SnapshotList
 	#tag Event
 		Sub Change()
 		  Dim p As Pair = GetSelectedSnapshots()
 		  If p.Right <> Nil Then
-		    DoShowSnapshot(p.Right, GraphExcludeNodesWithoutEdgeCheck.Value)
+		    DoShowSnapshot(p.Right)
 		  End If
 		End Sub
 	#tag EndEvent
