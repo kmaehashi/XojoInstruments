@@ -979,6 +979,41 @@ Begin Window XojoInstrumentsDesktopGUI
          Visible         =   True
          Width           =   120
       End
+      Begin Label LabelAboutCopyrightThirdParty
+         AutoDeactivate  =   True
+         Bold            =   False
+         DataField       =   ""
+         DataSource      =   ""
+         Enabled         =   True
+         Height          =   50
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "ResultTabPanel"
+         Italic          =   False
+         Left            =   240
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Multiline       =   True
+         Scope           =   2
+         Selectable      =   False
+         TabIndex        =   4
+         TabPanelIndex   =   5
+         TabStop         =   True
+         Text            =   "This software uses Vis.js distributed under MIT License.\n  Copyright (C) 2010-2018 Almende B.V. and Contributors\n  Copyright (c) 2018-2021 Vis.js contributors"
+         TextAlign       =   0
+         TextColor       =   &c00000000
+         TextFont        =   "System"
+         TextSize        =   10.0
+         TextUnit        =   0
+         Top             =   153
+         Transparent     =   True
+         Underline       =   False
+         Visible         =   True
+         Width           =   530
+      End
    End
    Begin Listbox SnapshotList
       AutoDeactivate  =   True
