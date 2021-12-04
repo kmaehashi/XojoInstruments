@@ -6,8 +6,8 @@ Inherits Application
 		  // -------------------------------------------------------------------- //
 		  
 		  // To install XojoInstruments to your project:
-		  // 1. Copy `XojoInstruments` folder to your project using IDE.
-		  // 2. Add the following line to `App.Open` event handler of your project.
+		  // 1. Copy `XojoInstruments` folder to your project using the IDE.
+		  // 2. Insert the following line to the top of `App.Open` (or `App.Opening`) event handler of your project.
 		  
 		  XojoInstruments.Start()
 		  
