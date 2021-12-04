@@ -74,6 +74,7 @@ Begin Window Example
       SelectionType   =   0
       TabIndex        =   2
       TabPanelIndex   =   0
+      TabStop         =   True
       Top             =   52
       Transparent     =   False
       Visible         =   True
@@ -91,6 +92,7 @@ Begin Window Example
       HasBackColor    =   False
       Height          =   70
       HelpTag         =   ""
+      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   20
       LockBottom      =   False
@@ -107,6 +109,38 @@ Begin Window Example
       UseFocusRing    =   False
       Visible         =   True
       Width           =   162
+   End
+   Begin PushButton CircularButton
+      AutoDeactivate  =   True
+      Bold            =   False
+      ButtonStyle     =   0
+      Cancel          =   False
+      Caption         =   "Create Circular Ref"
+      Default         =   False
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   191
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   4
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   20
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   159
    End
 End
 #tag EndWindow
@@ -141,6 +175,21 @@ End
 		  mLeaksArray.Append(s)
 		  mLeaksDict1.Value(mLeaksDict1.Count) = s
 		  mLeaksDict2.Value(mLeaksDict2.Count) = s
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events CircularButton
+	#tag Event
+		Sub Action()
+		  If mLeaksDict1 = Nil Then
+		    mLeaksDict1 = New Dictionary()
+		  End If
+		  If mLeaksDict2 = Nil Then
+		    mLeaksDict2 = New Xojo.Core.Dictionary()
+		  End If
+		  
+		  mLeaksDict1.Value("circular") = mLeaksDict2
+		  mLeaksDict2.Value("circular") = mLeaksDict1
 		End Sub
 	#tag EndEvent
 #tag EndEvents
