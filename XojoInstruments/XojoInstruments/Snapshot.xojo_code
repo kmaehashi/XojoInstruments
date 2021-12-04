@@ -276,6 +276,43 @@ Implements XojoInstruments.Framework.XIObject
 		        Next
 		        
 		      End Select
+		      
+		      // TODO: Support SegmentedButton (Segments)
+		      // TODO: Support ListBox (CellTag, RowTag, ColumnTag)
+		      
+		      #if XojoVersion >= 2021.03
+		        Select Case obj
+		        Case IsA DesktopWindow
+		          Dim win As DesktopWindow = obj
+		          // Note: non-control window items cannot be reached.
+		          For i As Integer = win.ControlCount - 1 DownTo 0
+		            Dim ctrl As Object = win.Control(i)
+		            Dim name As String
+		            If ctrl IsA DesktopControl Then
+		              name = DesktopControl(ctrl).Name
+		            ElseIf ctrl IsA EmbeddedWindowControl Then
+		              name = EmbeddedWindowControl(ctrl).Name
+		              // TODO set reference from EmbeddedWindowControl to actual container having the same Handle
+		            End If
+		            GetReferringObjectRefsRegister(ctrl, name, refs)
+		          Next
+		          
+		        Case IsA DesktopMenuItem
+		          Dim m As DesktopMenuItem = obj
+		          For i As Integer = m.Count() - 1 DownTo 0
+		            Dim child As DesktopMenuItem = m.MenuAt(i)
+		            GetReferringObjectRefsRegister(child, "[" + Str(i) + "]", refs)
+		          Next
+		          
+		        Case IsA DesktopSegmentedButton
+		          Dim sc As DesktopSegmentedButton = obj
+		          For i As Integer = sc.SegmentCount() - 1 DownTo 0
+		            GetReferringObjectRefsRegister(sc.SegmentAt(i), "Item[" + Str(i) + "]", refs)
+		          Next
+		          
+		        End Select
+		      #endif
+		      
 		    #endif
 		    
 		    Select Case obj
