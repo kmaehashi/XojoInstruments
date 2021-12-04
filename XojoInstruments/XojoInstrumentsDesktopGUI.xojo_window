@@ -1562,8 +1562,8 @@ End
 		    Dim dotGraph As String = DoGenerateDot(mSnapshot, GraphExcludeNodesWithoutEdgeCheck.Value, GraphDetectCircularCheck.Value, False)
 		    If GraphDotCommand.Text = "@vis.js" Then
 		      content = GRAPH_HTML_TEMPLATE
-		      content = content.Replace("${XI_VIS_NETWORK_MIN_JS}", VIS_NETWORK_MIN_JS)
 		      content = content.Replace("${XI_DOT_STRING}", GenerateJSON(dotGraph))
+		      content = content.Replace("${XI_VIS_NETWORK_MIN_JS}", VIS_NETWORK_MIN_JS)
 		    Else
 		      Dim tempDotFile As New XINamedTemporaryFile()
 		      Dim tos As Xojo.IO.TextOutputStream
