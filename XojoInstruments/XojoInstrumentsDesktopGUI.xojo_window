@@ -1648,9 +1648,9 @@ End
 #tag Events GraphDotCommand
 	#tag Event
 		Sub Open()
-		  Me.AddRow("@vis.js")
-		  
 		  #if TargetMacOS Or TargetLinux
+		    Me.AddRow("@vis.js")
+		    
 		    For Each cand As String In Array("/usr/local/bin/dot", "/usr/local/homebrew/bin/dot", "/usr/bin/dot", "/opt/homebrew/bin/dot")
 		      Dim f As FolderItem = GetFolderItem(cand, FolderItem.PathTypeNative)
 		      If f <> Nil And f.Exists Then
