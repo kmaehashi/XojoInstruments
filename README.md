@@ -1,3 +1,5 @@
+[![GitHub Actions](https://github.com/kmaehashi/XojoInstruments/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/kmaehashi/XojoInstruments/actions/workflows/test.yml)
+
 # Xojo Instruments
 
 Xojo Instruments is a runtime tool to diagnose memory leaks and circular references in Xojo Desktop applications.
