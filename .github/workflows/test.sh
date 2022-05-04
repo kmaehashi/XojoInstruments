@@ -2,7 +2,7 @@
 
 set -uex
 
-if [[ "${DISPLAY}" = "" ]]; then
+if [[ "${DISPLAY:-}" = "" ]]; then
     source /headless
 fi
 
