@@ -8,10 +8,6 @@ Inherits TestController
 		  
 		  Dim exitStatus As Integer = If(Self.FailedCount = 0, 0, 1)
 		  
-		  #if DebugBuild
-		    If exitStatus <> 0 Then Break
-		  #endif
-		  
 		  #if TargetConsole
 		    Quit(exitStatus)
 		  #else

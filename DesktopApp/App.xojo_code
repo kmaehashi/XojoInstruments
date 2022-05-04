@@ -23,6 +23,7 @@ Inherits Application
 		    
 		  #else
 		    
+		    App.AllowAutoQuit = False
 		    XojoInstrumentsTestController.Run()
 		    
 		  #endif
